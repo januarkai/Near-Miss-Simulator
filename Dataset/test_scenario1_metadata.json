@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-02-02T17:40:38.545967",
+  "num_scenarios": 1,
+  "total_frames": 200,
+  "total_objects": 350,
+  "scenarios": {
+    "0": {
+      "num_frames": 200,
+      "duration": 9.950000000000006,
+      "num_objects": 2,
+      "has_near_miss": false
+    }
+  }
+}

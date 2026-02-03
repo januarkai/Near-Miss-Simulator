@@ -1,0 +1,56 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT
+============================================================
+Generated: 2026-01-26 16:06:24
+
+SUMMARY
+----------------------------------------
+Total Scenarios: 20
+Total Frames: 1980
+Total Predictions: 7560
+
+CONFUSION MATRIX
+----------------------------------------
+                    Predicted
+                 Near-Miss  Safe
+Actual Near-Miss        7        0
+Actual Safe            13        0
+
+PERFORMANCE METRICS
+----------------------------------------
+Accuracy:           0.3500
+Precision:          0.3500
+Recall:             1.0000
+F1 Score:           0.5185
+False Positive Rate:1.0000
+False Negative Rate:0.0000
+
+DETECTION TIME (seconds before event)
+----------------------------------------
+Mean: 4.186s
+Std:  1.045s
+Min:  2.300s
+Max:  5.000s
+
+RISK LEVEL DISTRIBUTION
+----------------------------------------
+COLLISION      :     70
+NEAR_MISS      :   1806
+SAFE           :   5033
+WARNING        :    651
+
+TTC STATISTICS (seconds)
+----------------------------------------
+Min:  0.000
+Max:  362.872
+Mean: 5.804
+Std:  12.248
+
+DRAC STATISTICS (m/s²)
+----------------------------------------
+Min:  0.000
+Max:  inf
+Mean: inf
+Std:  nan
+
+============================================================
