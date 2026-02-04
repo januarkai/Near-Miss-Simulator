@@ -16,6 +16,8 @@ from Sources.scenario_types import TrackedObject, EgoVehicle, FrameData
 from Utils.config import SSMThresholds, RiskLevel, SimulationConfig, DEFAULT_SIMULATION_CONFIG
 from .ssm_calculator import SSMCalculator, SSMResult
 from .trajectory_model import TrajectoryPredictor, ConstantVelocityModel
+from .base_algorithm import NearMissAlgorithm, ScenarioPrediction
+from .registry import AlgorithmRegistry
 
 
 class ConflictType(Enum):
@@ -58,21 +60,21 @@ class PredictionResult:
     warning_message: str = ""
 
 
-@dataclass
-class ScenarioPrediction:
-    """Prediction results for a complete scenario."""
-    scenario_id: int
-    predictions: List[PredictionResult] = field(default_factory=list)
-    near_miss_detected: bool = False
-    first_detection_time: Optional[float] = None
-    max_risk_level: RiskLevel = RiskLevel.SAFE
-    summary: Dict = field(default_factory=dict)
 
-
-class NearMissPredictor:
+@AlgorithmRegistry.register
+class NearMissPredictor(NearMissAlgorithm):
     """Deterministic near-miss predictor using SSMs and rule-based classification."""
+
+    @classmethod
+    def get_name(cls) -> str:
+        return "Rule-Based SSM"
+
+    @property
+    def name(self) -> str:
+        return "Rule-Based SSM"
     
     def __init__(self, config: SimulationConfig = None, thresholds: SSMThresholds = None):
+        super().__init__(config)
         self.config = config or DEFAULT_SIMULATION_CONFIG
         self.thresholds = thresholds or SSMThresholds()
         

@@ -1,0 +1,57 @@
+{
+  "confusion_matrix": {
+    "true_positives": 0,
+    "true_negatives": 0,
+    "false_positives": 1,
+    "false_negatives": 0,
+    "accuracy": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0,
+    "false_positive_rate": 1.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": false,
+      "prediction_detected": true,
+      "result_type": "false_positive",
+      "detection_time": null,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 350,
+      "num_near_miss_predictions": 226,
+      "min_ttc": 0,
+      "max_drac": Infinity
+    }
+  },
+  "detection_times": [],
+  "mean_detection_time": 0.0,
+  "std_detection_time": 0.0,
+  "risk_distribution": {
+    "SAFE": 55,
+    "WARNING": 69,
+    "NEAR_MISS": 211,
+    "COLLISION": 15
+  },
+  "conflict_distribution": {
+    "REAR_END": 191,
+    "NONE": 144,
+    "SIDE_SWIPE": 15
+  },
+  "ttc_stats": {
+    "min": 0.0,
+    "max": 9.1,
+    "mean": 3.346726489542455,
+    "std": 2.72847882174784
+  },
+  "drac_stats": {
+    "min": 0.27472527472527475,
+    "max": Infinity,
+    "mean": Infinity,
+    "std": NaN
+  },
+  "total_scenarios": 1,
+  "total_frames": 191,
+  "total_predictions": 350
+}

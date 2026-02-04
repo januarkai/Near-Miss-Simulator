@@ -1,5 +1,7 @@
 """Algorithm package initialization."""
 
+from .base_algorithm import NearMissAlgorithm, ScenarioPrediction
+from .registry import AlgorithmRegistry
 from .ssm_calculator import SSMCalculator, SSMResult
 from .trajectory_model import (
     TrajectoryModel,

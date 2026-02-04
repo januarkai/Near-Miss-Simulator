@@ -23,6 +23,7 @@ from Sources.data_generator import SyntheticDataGenerator
 from Sources.data_loader import DataLoader
 from Sources.scenario_types import FrameData, ScenarioType, TrackedObject, EgoVehicle
 from Algorithm.near_miss_predictor import NearMissPredictor
+from Algorithm.registry import AlgorithmRegistry
 from Utils.config import (
     DEFAULT_SIMULATION_CONFIG, DEFAULT_DATA_GENERATOR_CONFIG,
     DEFAULT_VISUALIZATION_CONFIG, SimulationConfig, DataGeneratorConfig
@@ -912,6 +913,23 @@ class SimulatorApp:
         self.scenario_combo.grid(row=1, column=0, sticky='ew', pady=(3, 0))
         self.scenario_combo.bind('<<ComboboxSelected>>', self._on_scenario_selected)
         
+        # ===== Algorithm Selection =====
+        algo_frame = ttk.LabelFrame(parent, text="Algorithm", padding=10)
+        algo_frame.grid(row=row, column=0, sticky='ew', pady=(0, 10))
+        algo_frame.columnconfigure(0, weight=1)
+        row += 1
+        
+        ttk.Label(algo_frame, text="Select Algorithm:").grid(row=0, column=0, sticky='w')
+        self.algo_var = tk.StringVar()
+        self.algo_combo = ttk.Combobox(algo_frame, textvariable=self.algo_var, state='readonly', width=30)
+        self.algo_combo.grid(row=1, column=0, sticky='ew', pady=(3, 0))
+        
+        # Populate algorithms
+        algos = AlgorithmRegistry.list_algorithms()
+        self.algo_combo['values'] = algos
+        if algos:
+            self.algo_combo.current(0)
+        
         # ===== Playback Controls =====
         play_frame = ttk.LabelFrame(parent, text="Playback", padding=10)
         play_frame.grid(row=row, column=0, sticky='ew', pady=(0, 10))
@@ -1273,13 +1291,39 @@ class SimulatorApp:
         if self.current_dataset is None:
             messagebox.showerror("Error", "No data loaded.\nGenerate or import data first.")
             return
+            
+        # Get selected algorithm
+        algo_name = self.algo_var.get()
+        if not algo_name:
+            messagebox.showwarning("Warning", "Please select an algorithm.")
+            return
+
+        AlgoClass = AlgorithmRegistry.get_algorithm(algo_name)
+        if not AlgoClass:
+            messagebox.showerror("Error", f"Algorithm '{algo_name}' not found.")
+            return
+            
+        print(f"Running prediction with: {algo_name}")
+        predictor = AlgoClass(self.sim_config)
         
-        self.current_predictions = self.predictor.predict_dataset(self.current_dataset)
+        # Apply thresholds if supported
+        try:
+            if hasattr(predictor, 'near_miss_ttc_threshold'):
+                predictor.near_miss_ttc_threshold = float(self.ttc_thresh_var.get())
+            if hasattr(predictor, 'near_miss_drac_threshold'):
+                predictor.near_miss_drac_threshold = float(self.drac_thresh_var.get())
+            if hasattr(predictor, 'near_miss_mdr_threshold') and hasattr(self, 'mdr_thresh_var'):
+                 predictor.near_miss_mdr_threshold = float(self.mdr_thresh_var.get())
+        except ValueError:
+            print("Warning: Could not apply thresholds (invalid values)")
+        
+        self.current_predictions = predictor.predict_dataset(self.current_dataset)
         self._update_frame_display()
         
         nm_count = sum(1 for p in self.current_predictions.values() if p.near_miss_detected)
         messagebox.showinfo("Prediction Complete", 
                           f"Processed {len(self.current_predictions)} scenarios\n"
+                          f"Algorithm: {algo_name}\n"
                           f"Near-misses detected: {nm_count}")
     
     def _on_run_evaluation(self):

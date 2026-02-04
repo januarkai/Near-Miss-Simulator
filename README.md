@@ -11,13 +11,17 @@ This simulator implements deterministic near-miss prediction algorithms based on
 - **PET (Post-Encroachment Time)**: Time difference between two vehicles occupying the same space
 - **MDR (Minimum Distance Ratio)**: Ratio of actual distance to safe minimum distance
 
+It features a **Modular Algorithm System** allowing researchers to plug-in and test different near-miss detection logics dynamically via the GUI.
+
 ## Features
 
 1. **Synthetic Data Generation**: Generate synthetic tracked object data with configurable parameters
-2. **Data Export/Import**: Save and load synthetic data in CSV format
-3. **Deterministic Near-Miss Prediction**: Rule-based prediction using multiple SSMs
-4. **BEV Visualization**: Real-time Bird's Eye View visualization of tracked objects
-5. **Evaluation Metrics**: Comprehensive evaluation of prediction algorithm performance
+2. **Custom Scenario Editor**: Create specific traffic scenarios frame-by-frame with physics-based object interpolation.
+3. **Modular Algorithm Selector**: Switch between different prediction algorithms at runtime.
+4. **Data Export/Import**: Save and load synthetic data in CSV format
+5. **Deterministic Near-Miss Prediction**: Rule-based prediction using multiple SSMs
+6. **BEV Visualization**: Real-time Bird's Eye View visualization of tracked objects
+7. **Evaluation Metrics**: Comprehensive evaluation of prediction algorithm performance
 
 ## Project Structure
 
@@ -25,8 +29,10 @@ This simulator implements deterministic near-miss prediction algorithms based on
 Simulator/
 ├── Algorithm/
 │   ├── __init__.py
+│   ├── base_algorithm.py      # Abstract base class for algorithms
+│   ├── registry.py            # Algorithm registration system
 │   ├── ssm_calculator.py      # Surrogate Safety Measures calculations
-│   ├── near_miss_predictor.py # Deterministic prediction algorithm
+│   ├── near_miss_predictor.py # Standard Rule-Based SSM implementation
 │   └── trajectory_model.py    # Constant velocity trajectory model
 ├── Dataset/
 │   └── (generated CSV files)
@@ -123,6 +129,50 @@ The algorithm uses a multi-criteria approach:
 - **F1 Score**: Harmonic mean of precision and recall
 - **False Positive Rate**: False predictions / All safe situations
 - **Time to Detection**: Average time before actual near-miss event
+
+## Scenario Editor
+
+The **Scenario Editor** allows for precise creation of test cases:
+1. **Add Frame**: Click to create a new frame.
+   - **Physics Mode**: Based on the `FPS` setting, objects will automatically move to their predicted positions based on their `Vx` and `Vy`.
+   - **Manual Mode**: Manually adjust positions for specific edge cases.
+2. **Add Object**: Define object properties (position, size, velocity, class).
+3. **Controls**:
+   - `Save Scenario`: Saves the current sequence to a JSON file.
+   - `FPS`: Controls the simulation time-step delta (default: 10 FPS = 0.1s step).
+
+## Developer Guide: Adding Custom Algorithms
+
+The simulator uses a registry-based system to load prediction algorithms. To add a new method:
+
+1. Create a new file in `Algorithm/` (e.g., `my_algorithm.py`).
+2. Inherit from `NearMissAlgorithm`.
+3. Implement `predict_scenario`.
+4. Register the class using the `@AlgorithmRegistry.register` decorator.
+
+**Example:**
+
+```python
+# Algorithm/my_algorithm.py
+from .base_algorithm import NearMissAlgorithm
+from .registry import AlgorithmRegistry
+
+@AlgorithmRegistry.register
+class MyCustomPredictor(NearMissAlgorithm):
+    @property
+    def name(self) -> str:
+        return "My Custom Logic (v1)"
+
+    def predict_scenario(self, scenario_df, **kwargs):
+        # Your custom logic here
+        results = []
+        for frame_id, group in scenario_df.groupby('frame_id'):
+            # ... do prediction ...
+            pass
+        return results
+```
+
+The new algorithm will automatically appear in the GUI dropdown menu next time you run the application.
 
 ## Author
 

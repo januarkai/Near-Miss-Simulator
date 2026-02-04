@@ -1,0 +1,55 @@
+// Deterministic Near-Miss Prediction Logic
+digraph NearMissPrediction {
+	bgcolor=white rankdir=TB size="10,10"
+	node [fillcolor=lightblue fontname=Helvetica fontsize=12 shape=box style=filled]
+	edge [fontname=Helvetica fontsize=10]
+	Start [label="Start: Receive Frame Data" fillcolor=lightgreen shape=ellipse]
+	ObjLoop [label="Iterate Objects
+(Relative to Ego)" fillcolor=orange shape=diamond]
+	SSM [label="Calculate SSMs
+(TTC, DRAC, MDR)" shape=box]
+	ConflictDetect [label="Detect Conflict Type
+(Pos & Velocity Check)" shape=box]
+	ConflictCheck [label="Conflict Detected?" fillcolor=orange shape=diamond]
+	TrajPred [label="Predict Trajectory
+(Constant Velocity Model)" shape=box]
+	ColCheck [label="Predict Collision Point" shape=box]
+	TTC_Check [label="TTC < Threshold
+(e.g., < 2.0s)" fillcolor=lightyellow shape=diamond]
+	DRAC_Check [label="DRAC > Threshold
+(e.g., > 3.0 m/s²)" fillcolor=lightyellow shape=diamond]
+	MDR_Check [label="MDR < Threshold
+(e.g., < 1.0)" fillcolor=lightyellow shape=diamond]
+	MultiCriteria [label="Count Critical Criteria
+(Conflict + SSMs)" shape=box]
+	IsCritical [label="Is Critical?
+(>= 2 flags OR 
+High Risk)" fillcolor=orange shape=diamond]
+	NearMiss [label="Classify: NEAR-MISS
+(High Risk)" fillcolor=red fontcolor=white shape=box]
+	Warning [label="Classify: WARNING
+(Moderate Risk)" fillcolor=yellow shape=box]
+	Safe [label="Classify: SAFE" fillcolor=lightgrey shape=box]
+	Confidence [label="Calculate ConfidenceScore" shape=box]
+	Output [label="Output PredictionResult" fillcolor=lightgreen shape=parallelogram]
+	Start -> ObjLoop
+	ObjLoop -> SSM [label="Next Object"]
+	SSM -> ConflictDetect
+	ConflictDetect -> ConflictCheck
+	ConflictCheck -> TrajPred [label="Yes/No"]
+	TrajPred -> ColCheck
+	ColCheck -> TTC_Check
+	TTC_Check -> DRAC_Check
+	DRAC_Check -> MDR_Check
+	MDR_Check -> MultiCriteria
+	ConflictCheck -> MultiCriteria [label=Input]
+	MultiCriteria -> IsCritical
+	IsCritical -> NearMiss [label=Yes]
+	IsCritical -> Warning [label=Moderate]
+	IsCritical -> Safe [label=No]
+	NearMiss -> Confidence
+	Warning -> Confidence
+	Safe -> Confidence
+	Confidence -> Output
+	Output -> ObjLoop [label=Next]
+}
