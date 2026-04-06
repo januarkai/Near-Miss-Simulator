@@ -18,6 +18,7 @@ class ScenarioPrediction:
     near_miss_detected: bool
     first_detection_time: float = None
     max_risk_level: Any = None
+    max_confidence: float = 0.0 # Probabilistic score (0.0 - 1.0)
     summary: Dict[str, Any] = field(default_factory=dict)
 
 class NearMissAlgorithm(ABC):

@@ -1,0 +1,67 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-02-19 16:03:51
+
+GLOBAL PERFORMANCE METRICS (OBJECT-LEVEL AGGREGATION)
+============================================================
+Algorithm:           Rule-Based SSM
+Total Scenarios:     1
+Total Objects:       10
+Accuracy:            0.5000
+Precision:           0.5000
+Recall:              1.0000
+F1 Score:            0.6667
+Brier Score:         0.3970
+AUROC:               0.8000
+
+SEQUENCE-LEVEL METRICS (GOLD STANDARD)
+Conflict Type Acc:   0.4000 (on Correct Detections)
+Mean t-IoU:          0.3624 (Temporal Overlap Quality)
+
+CONFLICT TYPE CONFUSION (Actual -> Predicted):
+  REAR_END             -> LANE_CHANGE:1
+  LANE_CHANGE          -> LANE_CHANGE:1
+  CUTOFF               -> RIGHT_OF_WAY:1
+  BROADSIDE            -> RIGHT_OF_WAY:1
+  RIGHT_OF_WAY         -> RIGHT_OF_WAY:1
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   0    | TP     | REAR_END             | LANE_CHANGE          | 1.00   | 0.66   | 0.00s 
+   1    | TP     | LANE_CHANGE          | LANE_CHANGE          | 0.90   | 0.17   | 0.00s 
+   2    | TP     | CUTOFF               | RIGHT_OF_WAY         | 0.80   | 0.53   | 0.40s 
+   3    | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.21   | 0.40s 
+   4    | TP     | RIGHT_OF_WAY         | RIGHT_OF_WAY         | 1.00   | 0.24   | 0.40s 
+   5    | FP     | NONE                 | REAR_END             | 0.80   | 0.00   | -     
+   6    | FP     | NONE                 | BROADSIDE            | 0.80   | 0.00   | -     
+   7    | FP     | NONE                 | LANE_CHANGE          | 1.00   | 0.00   | -     
+   8    | FP     | NONE                 | LANE_CHANGE          | 1.00   | 0.00   | -     
+   9    | FP     | NONE                 | LANE_CHANGE          | 0.80   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3970
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 2: RIGHT_OF_WAY, Obj 3: RIGHT_OF_WAY, Obj 6: BROADSIDE, Obj 4: RIGHT_OF_WAY, Obj 0: RIGHT_OF_WAY, Obj 7: LANE_CHANGE, Obj 8: REAR_END
+   Detection T:  0.00s
+   Min TTC:      0.00s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.00       inf        0.00s     
+
+============================================================

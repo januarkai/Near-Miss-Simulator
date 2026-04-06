@@ -47,23 +47,24 @@ class SSMCalculator:
         self.min_lateral_gap = 0.5  # meters
         
     def calculate_distance(self, ego: EgoVehicle, obj: TrackedObject) -> Tuple[float, float, float]:
-        """Calculate distance between ego and object.
-        
+        """Calculate distance between ego and object (centre-to-centre).
+
+        Object size is intentionally excluded: sensor-estimated bounding-box
+        dimensions are unreliable, so all distances are measured between
+        object centroids and the ego origin.
+
         Returns:
             Tuple of (euclidean_distance, longitudinal_distance, lateral_distance)
         """
-        # Longitudinal distance (front of ego to rear of object if ahead)
-        if obj.x > 0:
-            long_dist = obj.x - obj.length/2 - ego.length/2
-        else:
-            long_dist = abs(obj.x) - obj.length/2 - ego.length/2
-        
-        # Lateral distance (edge to edge)
-        lat_dist = abs(obj.y) - obj.width/2 - ego.width/2
-        
-        # Euclidean distance (center to center)
+        # Longitudinal distance (centre-to-centre along x-axis)
+        long_dist = abs(obj.x)
+
+        # Lateral distance (centre-to-centre along y-axis)
+        lat_dist = abs(obj.y)
+
+        # Euclidean distance (centre-to-centre)
         eucl_dist = np.sqrt(obj.x**2 + obj.y**2)
-        
+
         return eucl_dist, max(0, long_dist), max(0, lat_dist)
     
     def calculate_ttc(self, ego: EgoVehicle, obj: TrackedObject) -> Optional[float]:
@@ -91,11 +92,11 @@ class SSMCalculator:
         if rel_vx <= 0:
             return None  # Not approaching (diverging)
         
-        # Check lateral overlap potential
+        # Check lateral overlap potential (centre-to-centre)
         # Consider collision possible if lateral gap < threshold after accounting for velocities
         future_lat_dist = lat_dist - abs(obj.vy) * (long_dist / rel_vx if rel_vx > 0.1 else 100)
-        
-        if future_lat_dist > self.min_lateral_gap and abs(obj.y) > ego.width/2 + obj.width/2:
+
+        if future_lat_dist > self.min_lateral_gap:
             return None  # Will pass without lateral overlap
         
         # Calculate TTC
@@ -119,8 +120,8 @@ class SSMCalculator:
         dvx = -obj.vx  # In ego frame
         dvy = -obj.vy
         
-        # Combined vehicle dimensions
-        safe_dist = (ego.length + obj.length) / 2 + self.min_longitudinal_gap
+        # Conflict zone threshold (centre-to-centre; no size correction applied)
+        safe_dist = self.min_longitudinal_gap
         
         # Solve for time when distance equals safe_dist
         # |p(t)| = |p0 + v*t| = safe_dist
@@ -235,11 +236,11 @@ class SSMCalculator:
         d_safe = v_ego * reaction_time + self.min_longitudinal_gap
         
         # For lateral safety
-        if abs(obj.y) < ego.width/2 + obj.width/2:
-            # Same lane - use longitudinal distance
+        if abs(obj.y) < self.min_lateral_gap:
+            # Object within lateral threshold - use longitudinal distance
             actual_dist = long_dist
         else:
-            # Different lane - use combination
+            # Object offset laterally - use combined distance
             actual_dist = np.sqrt(long_dist**2 + lat_dist**2)
         
         if d_safe <= 0:

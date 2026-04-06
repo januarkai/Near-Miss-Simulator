@@ -1,0 +1,1719 @@
+{
+  "algorithm_name": "Stochastic (Monte Carlo)",
+  "confusion_matrix": {
+    "true_positives": 28,
+    "true_negatives": 45,
+    "false_positives": 5,
+    "false_negatives": 22,
+    "accuracy": 0.73,
+    "precision": 0.8484848484848485,
+    "recall": 0.56,
+    "f1_score": 0.6746987951807228,
+    "false_positive_rate": 0.1,
+    "false_negative_rate": 0.44
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.9000000000000001,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 29,
+      "min_ttc": 0.032955037089570545,
+      "max_drac": 240.88140663605898,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 1,
+        "tn": 4,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.75,
+        "recall": 0.6,
+        "brier_score": 0.2913333333333334,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.06906272022551095
+      },
+      "type_confusion_entries": [
+        [
+          "LANE_CHANGE",
+          "NONE"
+        ],
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.0,
+        0.09090909090909098,
+        0.11627906976744186
+      ],
+      "predicted_conflict_types": {
+        "3": "RIGHT_OF_WAY",
+        "4": "CUTOFF",
+        "7": "CUTOFF"
+      },
+      "object_details": [
+        {
+          "object_id": 0,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 1,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.8,
+          "result_type": "TP",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "NONE",
+          "tiou": 0.0,
+          "detection_delay": 1.9000000000000001
+        },
+        {
+          "object_id": 2,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 3,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.9666666666666667,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.09090909090909098,
+          "detection_delay": 2.0
+        },
+        {
+          "object_id": 4,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.11627906976744186,
+          "detection_delay": 3.1
+        },
+        {
+          "object_id": 5,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 6,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 7,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.9333333333333333,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "CUTOFF",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 8,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.03333333333333333,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 9,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "1": {
+      "scenario_id": 1,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.8,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 13,
+      "min_ttc": 0.006861630703278653,
+      "max_drac": 10.803615056949644,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 2,
+        "fp": 0,
+        "tn": 5,
+        "fn": 3,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 1.0,
+        "recall": 0.4,
+        "brier_score": 0.2587777777777778,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.1577498033044847
+      },
+      "type_confusion_entries": [
+        [
+          "BROADSIDE",
+          "REAR_END"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.19354838709677433,
+        0.1219512195121951
+      ],
+      "predicted_conflict_types": {
+        "103": "REAR_END",
+        "104": "RIGHT_OF_WAY"
+      },
+      "object_details": [
+        {
+          "object_id": 100,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 101,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.23333333333333334,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 102,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 103,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "REAR_END",
+          "tiou": 0.19354838709677433,
+          "detection_delay": 1.8
+        },
+        {
+          "object_id": 104,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.1219512195121951,
+          "detection_delay": 2.8000000000000003
+        },
+        {
+          "object_id": 105,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 106,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 107,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 108,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 109,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "2": {
+      "scenario_id": 2,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.7000000000000002,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 41,
+      "min_ttc": 0.06985830678080289,
+      "max_drac": 47.949287824112794,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 0,
+        "tn": 5,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "brier_score": 0.1058888888888889,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.19360465116279074
+      },
+      "type_confusion_entries": [
+        [
+          "REAR_END",
+          "CUTOFF"
+        ],
+        [
+          "CUTOFF",
+          "REAR_END"
+        ],
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "CUTOFF"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.17441860465116274,
+        0.2500000000000001,
+        0.20000000000000004,
+        0.15000000000000005
+      ],
+      "predicted_conflict_types": {
+        "203": "CUTOFF",
+        "204": "CUTOFF",
+        "202": "REAR_END",
+        "200": "CUTOFF",
+        "206": "RIGHT_OF_WAY"
+      },
+      "object_details": [
+        {
+          "object_id": 200,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "CUTOFF",
+          "tiou": 0.17441860465116274,
+          "detection_delay": 6.6000000000000005
+        },
+        {
+          "object_id": 201,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 202,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "REAR_END",
+          "tiou": 0.2500000000000001,
+          "detection_delay": 3.5
+        },
+        {
+          "object_id": 203,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.20000000000000004,
+          "detection_delay": 1.7000000000000002
+        },
+        {
+          "object_id": 204,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "CUTOFF",
+          "tiou": 0.15000000000000005,
+          "detection_delay": 2.7
+        },
+        {
+          "object_id": 205,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 206,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.23333333333333334,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 207,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 208,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.06666666666666667,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 209,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "3": {
+      "scenario_id": 3,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.9000000000000001,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 13,
+      "min_ttc": 0.18080087060900377,
+      "max_drac": 10.103478617133279,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 2,
+        "fp": 0,
+        "tn": 5,
+        "fn": 3,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 1.0,
+        "recall": 0.4,
+        "brier_score": 0.28500000000000003,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.15490196078431373
+      },
+      "type_confusion_entries": [
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "CUTOFF"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.17647058823529407,
+        0.13333333333333336
+      ],
+      "predicted_conflict_types": {
+        "303": "REAR_END",
+        "304": "CUTOFF"
+      },
+      "object_details": [
+        {
+          "object_id": 300,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 301,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.1,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 302,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 303,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.17647058823529407,
+          "detection_delay": 1.9000000000000001
+        },
+        {
+          "object_id": 304,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "CUTOFF",
+          "tiou": 0.13333333333333336,
+          "detection_delay": 3.2
+        },
+        {
+          "object_id": 305,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 306,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 307,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 308,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.2,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 309,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "4": {
+      "scenario_id": 4,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.7000000000000002,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 50,
+      "min_ttc": 0.021560505943434775,
+      "max_drac": 181.4871284763403,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 1,
+        "tn": 4,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.75,
+        "recall": 0.6,
+        "brier_score": 0.2783333333333333,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.2744467156231862
+      },
+      "type_confusion_entries": [
+        [
+          "LANE_CHANGE",
+          "REAR_END"
+        ],
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.35294117647058826,
+        0.35135135135135126,
+        0.11904761904761904
+      ],
+      "predicted_conflict_types": {
+        "401": "REAR_END",
+        "403": "RIGHT_OF_WAY",
+        "404": "RIGHT_OF_WAY",
+        "407": "CUTOFF",
+        "402": "BROADSIDE"
+      },
+      "object_details": [
+        {
+          "object_id": 400,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 401,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.8333333333333334,
+          "result_type": "TP",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "REAR_END",
+          "tiou": 0.35294117647058826,
+          "detection_delay": 1.7000000000000002
+        },
+        {
+          "object_id": 402,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.13333333333333333,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 403,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.35135135135135126,
+          "detection_delay": 1.7000000000000002
+        },
+        {
+          "object_id": 404,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.11904761904761904,
+          "detection_delay": 2.9000000000000004
+        },
+        {
+          "object_id": 405,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 406,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 407,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 408,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.06666666666666667,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 409,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "5": {
+      "scenario_id": 5,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.8,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 16,
+      "min_ttc": 0.12516962989826058,
+      "max_drac": 11.106679046006423,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 0,
+        "tn": 5,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 1.0,
+        "recall": 0.6,
+        "brier_score": 0.2086666666666667,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.11317829457364341
+      },
+      "type_confusion_entries": [
+        [
+          "LANE_CHANGE",
+          "NONE"
+        ],
+        [
+          "BROADSIDE",
+          "REAR_END"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "CUTOFF"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.033333333333333215,
+        0.16666666666666674,
+        0.13953488372093023
+      ],
+      "predicted_conflict_types": {
+        "503": "REAR_END",
+        "504": "CUTOFF"
+      },
+      "object_details": [
+        {
+          "object_id": 500,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 501,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.6333333333333333,
+          "result_type": "TP",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "NONE",
+          "tiou": 0.033333333333333215,
+          "detection_delay": 2.4000000000000004
+        },
+        {
+          "object_id": 502,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.03333333333333333,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 503,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "REAR_END",
+          "tiou": 0.16666666666666674,
+          "detection_delay": 1.8
+        },
+        {
+          "object_id": 504,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "CUTOFF",
+          "tiou": 0.13953488372093023,
+          "detection_delay": 3.0
+        },
+        {
+          "object_id": 505,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 506,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 507,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.13333333333333333,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 508,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 509,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "6": {
+      "scenario_id": 6,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -1.9000000000000001,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 22,
+      "min_ttc": 0.36580606085464185,
+      "max_drac": 11.516488558542473,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 1,
+        "tn": 4,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.75,
+        "recall": 0.6,
+        "brier_score": 0.29933333333333334,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.10646606203456994
+      },
+      "type_confusion_entries": [
+        [
+          "REAR_END",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "BROADSIDE",
+          "REAR_END"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.01680672268907572,
+        0.15625000000000006,
+        0.1463414634146341
+      ],
+      "predicted_conflict_types": {
+        "603": "RIGHT_OF_WAY",
+        "604": "REAR_END",
+        "607": "REAR_END",
+        "600": "RIGHT_OF_WAY"
+      },
+      "object_details": [
+        {
+          "object_id": 600,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.5666666666666667,
+          "result_type": "TP",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.01680672268907572,
+          "detection_delay": 10.5
+        },
+        {
+          "object_id": 601,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.06666666666666667,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 602,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 603,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "REAR_END",
+          "tiou": 0.15625000000000006,
+          "detection_delay": 1.9000000000000001
+        },
+        {
+          "object_id": 604,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.1463414634146341,
+          "detection_delay": 2.8000000000000003
+        },
+        {
+          "object_id": 605,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 606,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 607,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.9666666666666667,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "REAR_END",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 608,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 609,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "7": {
+      "scenario_id": 7,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -2.1,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 14,
+      "min_ttc": 0.04147040107121083,
+      "max_drac": 7.853790306725548,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 2,
+        "fp": 1,
+        "tn": 4,
+        "fn": 3,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "brier_score": 0.2938888888888889,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.11388508891928864
+      },
+      "type_confusion_entries": [
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.08823529411764713,
+        0.13953488372093015
+      ],
+      "predicted_conflict_types": {
+        "703": "RIGHT_OF_WAY",
+        "701": "LANE_CHANGE",
+        "704": "RIGHT_OF_WAY",
+        "708": "RIGHT_OF_WAY"
+      },
+      "object_details": [
+        {
+          "object_id": 700,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 701,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.36666666666666664,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 702,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 703,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.08823529411764713,
+          "detection_delay": 2.1
+        },
+        {
+          "object_id": 704,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.13953488372093015,
+          "detection_delay": 2.9000000000000004
+        },
+        {
+          "object_id": 705,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 706,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 707,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 708,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.7333333333333333,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 709,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "8": {
+      "scenario_id": 8,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -2.1,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 43,
+      "min_ttc": 0.06322309051201394,
+      "max_drac": 280.8372749483807,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 0,
+        "tn": 5,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "brier_score": 0.1,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.1264443277310925
+      },
+      "type_confusion_entries": [
+        [
+          "REAR_END",
+          "CUTOFF"
+        ],
+        [
+          "LANE_CHANGE",
+          "REAR_END"
+        ],
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "CUTOFF"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.11607142857142862,
+        0.17647058823529416,
+        0.08823529411764713,
+        0.125
+      ],
+      "predicted_conflict_types": {
+        "801": "REAR_END",
+        "803": "RIGHT_OF_WAY",
+        "804": "CUTOFF",
+        "800": "CUTOFF"
+      },
+      "object_details": [
+        {
+          "object_id": 800,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "CUTOFF",
+          "tiou": 0.11607142857142862,
+          "detection_delay": 9.3
+        },
+        {
+          "object_id": 801,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "REAR_END",
+          "tiou": 0.17647058823529416,
+          "detection_delay": 2.1
+        },
+        {
+          "object_id": 802,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 803,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.08823529411764713,
+          "detection_delay": 2.1
+        },
+        {
+          "object_id": 804,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "CUTOFF",
+          "tiou": 0.125,
+          "detection_delay": 2.8000000000000003
+        },
+        {
+          "object_id": 805,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 806,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 807,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 808,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 809,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    },
+    "9": {
+      "scenario_id": 9,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -2.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 17,
+      "min_ttc": 0.04362725897996588,
+      "max_drac": 10.211108015738159,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 2,
+        "fp": 1,
+        "tn": 4,
+        "fn": 3,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "brier_score": 0.3814444444444444,
+        "type_accuracy": 0.0,
+        "mean_tiou": 0.1079545454545455
+      },
+      "type_confusion_entries": [
+        [
+          "BROADSIDE",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.09090909090909098,
+        0.125
+      ],
+      "predicted_conflict_types": {
+        "903": "RIGHT_OF_WAY",
+        "904": "RIGHT_OF_WAY",
+        "906": "BROADSIDE"
+      },
+      "object_details": [
+        {
+          "object_id": 900,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 901,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 902,
+          "ground_truth": true,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "FN",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 903,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "RIGHT_OF_WAY",
+          "tiou": 0.09090909090909098,
+          "detection_delay": 2.0
+        },
+        {
+          "object_id": 904,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.125,
+          "detection_delay": 2.7
+        },
+        {
+          "object_id": 905,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 906,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.9,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "BROADSIDE",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 907,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.06666666666666667,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 908,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 909,
+          "ground_truth": false,
+          "predicted": false,
+          "confidence": 0.0,
+          "result_type": "TN",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    }
+  },
+  "mean_tiou": 0.14423714606684035,
+  "type_accuracy_global": 0.0,
+  "type_confusion_matrix": {
+    "LANE_CHANGE": {
+      "NONE": 2,
+      "REAR_END": 2
+    },
+    "BROADSIDE": {
+      "RIGHT_OF_WAY": 7,
+      "REAR_END": 3
+    },
+    "RIGHT_OF_WAY": {
+      "REAR_END": 6,
+      "CUTOFF": 4
+    },
+    "REAR_END": {
+      "CUTOFF": 2,
+      "RIGHT_OF_WAY": 1
+    },
+    "CUTOFF": {
+      "REAR_END": 1
+    }
+  },
+  "detection_times": [
+    -1.9000000000000001,
+    -1.8,
+    -1.7000000000000002,
+    -1.9000000000000001,
+    -1.7000000000000002,
+    -1.8,
+    -1.9000000000000001,
+    -2.1,
+    -2.1,
+    -2.0
+  ],
+  "mean_detection_time": -1.8900000000000001,
+  "std_detection_time": 0.13747727084867517,
+  "risk_distribution": {
+    "SAFE": 14625,
+    "NEAR_MISS": 101,
+    "WARNING": 117,
+    "COLLISION": 157
+  },
+  "conflict_distribution": {
+    "REAR_END": 534,
+    "NONE": 12199,
+    "LANE_CHANGE": 1033,
+    "RIGHT_OF_WAY": 311,
+    "CUTOFF": 423,
+    "BROADSIDE": 500
+  },
+  "ttc_stats": {
+    "min": 0.006861630703278653,
+    "max": 5837.691148783816,
+    "mean": 45.69891240934216,
+    "std": 209.3761451889153
+  },
+  "drac_stats": {
+    "min": 1.462331697302215e-08,
+    "max": 280.8372749483807,
+    "mean": 3.1576701800003515,
+    "std": 16.221347011182868
+  },
+  "brier_score": 0.25026666666666664,
+  "auroc": 0.7808000000000002,
+  "total_scenarios": 10,
+  "total_frames": 1500,
+  "total_predictions": 15000
+}

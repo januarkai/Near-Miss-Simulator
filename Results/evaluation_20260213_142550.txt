@@ -1,0 +1,314 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-02-13 14:25:50
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3770
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.10s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 1
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3920
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.90s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 2
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3730
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.40s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 3
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3270
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.90s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 4
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3810
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.50s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 5
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3780
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.50s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 6
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3780
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.50s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 7
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3960
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.10s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 8
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3710
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  3.00s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 9
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3620
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.30s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 10
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3980
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     NEAR_MISS
+   Detection T:  1.60s
+   Min TTC:      0.02s
+----------------------------------------
+
+>> SCENARIO 11
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.4130
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.30s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 12
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3810
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.40s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 13
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.4090
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.30s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 14
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3770
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.70s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 15
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3960
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.90s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 16
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.4000
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.40s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 17
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3920
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.10s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 18
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3240
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  2.10s
+   Min TTC:      0.00s
+----------------------------------------
+
+>> SCENARIO 19
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.3770
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Detection T:  1.70s
+   Min TTC:      0.00s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.00       inf        1.10s     
+1     TP              YES        YES        COLLISION       0.00       70.25      1.90s     
+2     TP              YES        YES        COLLISION       0.00       inf        1.40s     
+3     TP              YES        YES        COLLISION       0.00       inf        1.90s     
+4     TP              YES        YES        COLLISION       0.00       inf        2.50s     
+5     TP              YES        YES        COLLISION       0.00       inf        1.50s     
+6     TP              YES        YES        COLLISION       0.00       inf        1.50s     
+7     TP              YES        YES        COLLISION       0.00       inf        2.10s     
+8     TP              YES        YES        COLLISION       0.00       inf        3.00s     
+9     TP              YES        YES        COLLISION       0.00       inf        2.30s     
+10    TP              YES        YES        NEAR_MISS       0.02       7.03       1.60s     
+11    TP              YES        YES        COLLISION       0.00       inf        2.30s     
+12    TP              YES        YES        COLLISION       0.00       inf        1.40s     
+13    TP              YES        YES        COLLISION       0.00       inf        1.30s     
+14    TP              YES        YES        COLLISION       0.00       inf        2.70s     
+15    TP              YES        YES        COLLISION       0.00       inf        1.90s     
+16    TP              YES        YES        COLLISION       0.00       34.84      2.40s     
+17    TP              YES        YES        COLLISION       0.00       inf        2.10s     
+18    TP              YES        YES        COLLISION       0.00       inf        2.10s     
+19    TP              YES        YES        COLLISION       0.00       inf        1.70s     
+
+============================================================

@@ -1,0 +1,30 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-02-15 17:21:34
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object Evaluation]
+   Counts:       TP=4 | FP=1 | TN=4 | FN=1 (Total: 10)
+   Metrics:      Acc=0.80 | Prec=0.80 | Rec=0.80 | Brier=0.2019
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 1: REAR_END, Obj 3: CUT_IN, Obj 2: REAR_END, Obj 4: REAR_END, Obj 6: REAR_END
+   Detection T:  2.60s
+   Min TTC:      0.00s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.00       inf        2.60s     
+
+============================================================

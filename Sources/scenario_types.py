@@ -18,8 +18,20 @@ class ScenarioType(Enum):
     CROSSING_PEDESTRIAN = "crossing_pedestrian"
     APPROACHING_STATIONARY = "approaching_stationary"
     NEAR_MISS_REAR_END = "near_miss_rear_end"
-    NEAR_MISS_SIDE_SWIPE = "near_miss_side_swipe"
-    NEAR_MISS_HEAD_ON = "near_miss_head_on"
+    NEAR_MISS_LANE_CHANGE = "near_miss_lane_change"
+    NEAR_MISS_CUTOFF = "near_miss_cutoff"
+    NEAR_MISS_BROADSIDE = "near_miss_broadside"
+    NEAR_MISS_RIGHT_OF_WAY = "near_miss_right_of_way"
+    
+    # Safe variants
+    SAFE_REAR_END = "safe_rear_end" # Car following with safe distance
+    SAFE_LANE_CHANGE = "safe_lane_change"
+    SAFE_CUTOFF = "safe_cutoff" # Cut in with safe distance
+    SAFE_BROADSIDE = "safe_broadside"
+    SAFE_RIGHT_OF_WAY = "safe_right_of_way"
+
+    # Mixed Scenario
+    MIXED_NEAR_MISS = "mixed_near_miss"
 
 
 @dataclass
@@ -34,6 +46,8 @@ class TrackedObject:
     width: float  # Object width (meters)
     object_class: str  # Object type
     heading: float = 0.0  # Heading angle (radians, 0 = same direction as ego)
+    role: str = "background" # Role for behavior generation (e.g., 'lead', 'crossing')
+    is_risk_object: bool = False # Flag for evaluation: is this the object causing the near-miss?
     
     def get_corners(self) -> np.ndarray:
         """Get the four corners of the object bounding box."""
@@ -129,6 +143,10 @@ class ScenarioConfig:
     adjacent_lane: int = 1  # 1 = left, -1 = right
     adjacent_offset: float = 0.0  # Longitudinal offset from ego
     
+    crossing_vehicle: bool = False # For Broadside/RoW
+    crossing_start_dist: float = 50.0 
+    crossing_velocity: float = 5.0
+    
     # Dynamics parameters
     lane_change_start: Optional[float] = None
     lane_change_duration: float = 3.0
@@ -222,8 +240,8 @@ SCENARIO_CONFIGS = {
         lead_relative_velocity=-8.0  # Rapid approach
     ),
     
-    ScenarioType.NEAR_MISS_SIDE_SWIPE: ScenarioConfig(
-        scenario_type=ScenarioType.NEAR_MISS_SIDE_SWIPE,
+    ScenarioType.NEAR_MISS_LANE_CHANGE: ScenarioConfig(
+        scenario_type=ScenarioType.NEAR_MISS_LANE_CHANGE,
         duration=10.0,
         num_objects=3,
         near_miss_event=True,
@@ -236,11 +254,99 @@ SCENARIO_CONFIGS = {
         lane_change_direction=-1
     ),
     
-    ScenarioType.NEAR_MISS_HEAD_ON: ScenarioConfig(
-        scenario_type=ScenarioType.NEAR_MISS_HEAD_ON,
+    # --- New Near-Miss Categories ---
+    
+    ScenarioType.NEAR_MISS_CUTOFF: ScenarioConfig(
+        scenario_type=ScenarioType.NEAR_MISS_CUTOFF,
+        duration=8.0,
+        num_objects=3,
+        near_miss_event=True,
+        event_time=4.0,
+        adjacent_vehicle=True,
+        adjacent_lane=1,
+        adjacent_offset=5.0, # Slightly ahead
+        lane_change_start=2.5,
+        lane_change_duration=1.5, # Fast
+        lane_change_direction=-1
+    ),
+    
+    ScenarioType.NEAR_MISS_BROADSIDE: ScenarioConfig(
+        scenario_type=ScenarioType.NEAR_MISS_BROADSIDE,
         duration=8.0,
         num_objects=2,
         near_miss_event=True,
-        event_time=4.0
+        event_time=4.0,
+        crossing_vehicle=True,
+        crossing_start_dist=40.0,
+        crossing_velocity=8.0
+    ),
+    
+    ScenarioType.NEAR_MISS_RIGHT_OF_WAY: ScenarioConfig(
+        scenario_type=ScenarioType.NEAR_MISS_RIGHT_OF_WAY,
+        duration=10.0,
+        num_objects=3,
+        near_miss_event=True,
+        event_time=5.0,
+        crossing_vehicle=True,
+        crossing_start_dist=50.0,
+        crossing_velocity=5.0 # Slower, failing to yield
+    ),
+    
+    # --- Safe Variants ---
+    
+    ScenarioType.SAFE_REAR_END: ScenarioConfig(
+        scenario_type=ScenarioType.SAFE_REAR_END,
+        duration=10.0,
+        num_objects=2,
+        near_miss_event=False,
+        lead_vehicle=True,
+        lead_distance=50.0,
+        lead_relative_velocity=-1.0 # Stable following
+    ),
+    
+    ScenarioType.SAFE_LANE_CHANGE: ScenarioConfig(
+        scenario_type=ScenarioType.SAFE_LANE_CHANGE,
+        duration=10.0,
+        num_objects=3,
+        near_miss_event=False,
+        adjacent_vehicle=True,
+        adjacent_lane=1,
+        adjacent_offset=-10.0, # Behind
+        lane_change_start=3.0,
+        lane_change_duration=4.0, # Slow/Safe
+        lane_change_direction=-1
+    ),
+     
+    ScenarioType.SAFE_CUTOFF: ScenarioConfig(
+        scenario_type=ScenarioType.SAFE_CUTOFF,
+        duration=10.0,
+        num_objects=3,
+        near_miss_event=False,
+        adjacent_vehicle=True,
+        adjacent_lane=1,
+        adjacent_offset=20.0, # Far ahead
+        lane_change_start=3.0,
+        lane_change_duration=3.0,
+        lane_change_direction=-1
+    ),
+    
+    ScenarioType.SAFE_BROADSIDE: ScenarioConfig(
+        scenario_type=ScenarioType.SAFE_BROADSIDE,
+        duration=8.0,
+        num_objects=2,
+        near_miss_event=False,
+        crossing_vehicle=True,
+        crossing_start_dist=80.0, # Far away
+        crossing_velocity=10.0
+    ),
+    
+    ScenarioType.SAFE_RIGHT_OF_WAY: ScenarioConfig(
+        scenario_type=ScenarioType.SAFE_RIGHT_OF_WAY,
+        duration=10.0,
+        num_objects=3,
+        near_miss_event=False,
+        crossing_vehicle=True,
+        crossing_start_dist=60.0,
+        crossing_velocity=0.0 # Stopped/Waiting
     )
 }

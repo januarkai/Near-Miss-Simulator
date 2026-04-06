@@ -1,0 +1,188 @@
+TY  - RPRT
+AU  - World Health Organization
+TI  - Global Status Report on Road Safety 2023
+PY  - 2023
+PB  - World Health Organization
+CY  - Geneva, Switzerland
+UR  - https://www.who.int/publications/i/item/9789240086906
+N1  - Cited as [1] in Section I
+ER  - 
+
+TY  - JOUR
+AU  - Hayward, J. C.
+TI  - Near-Miss Determination Through Use of a Scale of Danger
+T2  - Highway Research Record
+PY  - 1972
+VL  - 384
+SP  - 24
+EP  - 34
+N1  - Cited as [2] in Section I; original TTC definition
+ER  - 
+
+TY  - THES
+AU  - Hydén, C.
+TI  - The Development of a Method for Traffic Safety Evaluation: The Swedish Traffic Conflicts Technique
+PY  - 1987
+PB  - Department of Traffic Planning and Engineering, Lund Institute of Technology
+CY  - Lund, Sweden
+N1  - Cited as [3] in Section I; conflict frequency ratio (~500x crashes)
+ER  - 
+
+TY  - BOOK
+AU  - American Association of State Highway and Transportation Officials
+TI  - Highway Safety Manual
+ET  - 1st edition
+PY  - 2010
+PB  - AASHTO
+CY  - Washington, D.C.
+N1  - Cited as [4] in Section I
+ER  - 
+
+TY  - RPRT
+AU  - National Highway Traffic Safety Administration
+TI  - Forward Collision Warning Systems Confirmation Test Procedures
+PY  - 2022
+PB  - U.S. Department of Transportation, National Highway Traffic Safety Administration
+CY  - Washington, D.C.
+N1  - Cited as [5] in Section I; FCW performance guidelines
+ER  - 
+
+TY  - JOUR
+AU  - Cooper, D. F.
+AU  - Ferguson, N.
+TI  - Traffic Studies at T-Junctions: A Conflict Simulation Record
+T2  - Traffic Engineering and Control
+PY  - 1976
+VL  - 17
+IS  - 7
+SP  - 306
+EP  - 309
+N1  - Cited as [6] in Section I; original DRAC definition
+ER  - 
+
+TY  - JOUR
+AU  - Allen, B. L.
+AU  - Shin, B. T.
+AU  - Cooper, D. J.
+TI  - Analysis of Traffic Conflicts and Collisions
+T2  - Transportation Research Record
+PY  - 1978
+VL  - 667
+SP  - 67
+EP  - 74
+N1  - Cited as [7] in Section I; original Post-Encroachment Time (PET) definition
+ER  - 
+
+TY  - JOUR
+AU  - Jiao, Y.
+AU  - Calvert, S. C.
+AU  - van Cranenburgh, S.
+AU  - van Lint, H.
+TI  - A Unified Probabilistic Approach to Traffic Conflict Detection
+T2  - Analytic Methods in Accident Research
+PY  - 2024
+DO  - 10.1016/j.amar.2024.100369
+N1  - Cited as [8] in Section I; arXiv:2407.10959; BibTeX key: jiao2024unified
+ER  - 
+
+TY  - JOUR
+AU  - de Gelder, E.
+AU  - Adjenughwure, K.
+AU  - Manders, J.
+AU  - Snijders, R.
+AU  - Paardekooper, J.-P.
+AU  - Op den Camp, O.
+AU  - Tejada, A.
+AU  - De Schutter, B.
+TI  - PRISMA: A Novel Approach for Deriving Probabilistic Surrogate Safety Measures for Risk Evaluation
+T2  - Accident Analysis & Prevention
+PY  - 2023
+DO  - 10.1016/j.aap.2023.107273
+N1  - Cited as [9] in Section I; arXiv:2303.07891; BibTeX key: degelder2023prisma
+ER  - 
+
+TY  - JOUR
+AU  - Li, P.
+AU  - Guo, H.
+AU  - Bao, S.
+AU  - Kusari, A.
+TI  - A Probabilistic Framework for Estimating the Risk of Pedestrian-Vehicle Conflicts at Intersections
+T2  - IEEE Transactions on Intelligent Transportation Systems
+PY  - 2023
+DO  - 10.1109/TITS.2023.3296567
+N1  - Cited as [10] in Section I; arXiv:2207.14145; BibTeX key: lipedestrian2022
+ER  - 
+
+TY  - UNPB
+AU  - Li, S.
+AU  - Anis, M.
+AU  - Lord, D.
+AU  - Zhang, H.
+AU  - Zhou, Y.
+AU  - Ye, X.
+TI  - Beyond 1D and Oversimplified Kinematics: A Generic Analytical Framework for Surrogate Safety Measures
+T2  - arXiv preprint arXiv:2312.07019
+PY  - 2024
+DO  - 10.48550/arXiv.2312.07019
+UR  - https://arxiv.org/abs/2312.07019
+N1  - Cited as [11] in Sections I and III; 1D TTC errors up to 300% for non-critical values; BibTeX key: li2021ttcbias
+ER  - 
+
+TY  - UNPB
+AU  - Abdelraouf, A.
+AU  - Abdel-Aty, M.
+AU  - Wang, Z.
+AU  - Zheng, O.
+TI  - Trajectory Prediction for Vehicle Conflict Identification at Intersections Using Sequence-to-Sequence Recurrent Neural Networks
+T2  - arXiv preprint arXiv:2210.08009
+PY  - 2022
+DO  - 10.48550/arXiv.2210.08009
+UR  - https://arxiv.org/abs/2210.08009
+N1  - Cited as [12] in Sections I and III; BibTeX key: seq2seq2022
+ER  - 
+
+TY  - JOUR
+AU  - Guo, H.
+AU  - Xie, K.
+AU  - Keyvan-Ekbatani, M.
+TI  - Modeling Driver's Evasive Behavior During Safety-Critical Lane Changes: Two-Dimensional Time-to-Collision and Deep Reinforcement Learning
+T2  - Accident Analysis & Prevention
+PY  - 2023
+DO  - 10.1016/j.aap.2023.107063
+N1  - Cited as [16] in Section III; arXiv:2209.15133; 2D-TTC for lateral conflict types
+ER  - 
+
+TY  - UNPB
+AU  - Lu, J.
+AU  - Grembek, O.
+AU  - Hansen, M.
+TI  - Connecting Surrogate Safety Measures to Crash Probability via Causal Probabilistic Time Series Prediction
+T2  - arXiv preprint arXiv:2210.01363
+PY  - 2022
+DO  - 10.48550/arXiv.2210.01363
+UR  - https://arxiv.org/abs/2210.01363
+N1  - Cited as [13] in Section I; BibTeX key: lu2022causal; Transformer-MAF causal SSM-to-crash-probability
+ER  - 
+
+TY  - JOUR
+AU  - Abdel-Aty, M.
+AU  - Wang, Z.
+AU  - Zheng, O.
+AU  - Abdelraouf, A.
+TI  - Advances and Applications of Computer Vision Techniques in Vehicle Trajectory Generation and Surrogate Traffic Safety Indicators
+T2  - Accident Analysis & Prevention
+PY  - 2023
+DO  - 10.1016/j.aap.2023.107191
+N1  - Cited as [14] in Section I; arXiv:2303.15231; BibTeX key: abdelaty2023survey; CV-to-SSM pipeline survey
+ER  - 
+
+TY  - UNPB
+AU  - Del Re, E.
+AU  - Olaverri-Monreal, C.
+TI  - Method for Comparison of Surrogate Safety Measures in Multi-Vehicle Scenarios
+T2  - arXiv preprint arXiv:2304.08998
+PY  - 2023
+DO  - 10.48550/arXiv.2304.08998
+UR  - https://arxiv.org/abs/2304.08998
+N1  - Cited as [15] in Section I; BibTeX key: delre2023multivehicle; multi-vehicle pairwise SSM conflict propagation
+ER  - 

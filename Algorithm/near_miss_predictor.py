@@ -23,12 +23,11 @@ from .registry import AlgorithmRegistry
 class ConflictType(Enum):
     """Types of traffic conflicts."""
     NONE = "none"
-    REAR_END = "rear_end"
-    SIDE_SWIPE = "side_swipe"
-    HEAD_ON = "head_on"
-    CROSSING = "crossing"
-    CUT_IN = "cut_in"
-    CUT_OUT = "cut_out"
+    REAR_END = "rear_end"        # Following vehicle forced to stop suddenly
+    LANE_CHANGE = "lane_change"  # Slow moving car changes lanes -> fast car slows/swerves
+    CUTOFF = "cutoff"            # Turning movement across path -> alter motion
+    BROADSIDE = "broadside"      # Passing into intersection -> blocked path
+    RIGHT_OF_WAY = "right_of_way" # Two drivers -> same point -> refused to grant path
 
 
 @dataclass
@@ -109,53 +108,75 @@ class NearMissPredictor(NearMissAlgorithm):
     def detect_conflict_type(self, ego: EgoVehicle, obj: TrackedObject) -> ConflictType:
         """Detect the type of potential conflict.
         
-        Based on relative position and velocity.
+        Mapped to 5 specific types:
+        1. Rear-end: Following vehicle forced to stop suddenly (braking).
+        2. Lane-change: Slow moving car changes lanes -> fast car slows/swerves.
+        3. Cutoff: Turning movement across path -> alter motion.
+        4. Broadside: Passing into intersection -> blocked path of cross traffic.
+        5. Right-of-way: Two drivers proceeded to same point -> refused to grant clear path.
         """
-        # Relative position
-        x, y = obj.x, obj.y
-        vx, vy = obj.vx, obj.vy
+        # Relative position and velocity
+        dx = obj.x
+        dy = obj.y
+        vx = obj.vx
+        vy = obj.vy
         
-        # Longitudinal zones
-        ahead = x > ego.length / 2
-        behind = x < -ego.length / 2
-        alongside = -ego.length / 2 <= x <= ego.length / 2
-        
-        # Lateral zones
-        same_lane = abs(y) < self.config.lane_width / 2
-        adjacent_lane = self.config.lane_width / 2 <= abs(y) < 1.5 * self.config.lane_width
-        
-        # Detect conflict type
-        if ahead and same_lane:
-            if vx < -1.0:  # Object slower (approaching)
-                return ConflictType.REAR_END
-            return ConflictType.NONE
-        
-        if ahead and adjacent_lane:
-            # Check for cut-in (moving towards ego lane)
-            lane_direction = 1 if y > 0 else -1
-            moving_towards = (lane_direction * vy) < -0.3
-            if moving_towards:
-                return ConflictType.CUT_IN
-            return ConflictType.NONE
-        
-        if alongside:
-            if adjacent_lane:
-                # Check for side-swipe (moving towards ego)
-                lane_direction = 1 if y > 0 else -1
-                moving_towards = (lane_direction * vy) < -0.3
-                if moving_towards:
-                    return ConflictType.SIDE_SWIPE
-            return ConflictType.NONE
-        
-        if behind and same_lane:
-            if vx > 1.0:  # Object faster (approaching from behind)
-                return ConflictType.REAR_END
-            return ConflictType.NONE
-        
-        # Check for crossing (high lateral velocity, object crossing path)
-        if abs(vy) > 1.0 and 0 < x < 50:
-            return ConflictType.CROSSING
-        
+        # Spatial zones
+        ahead = dx > 0
+        behind = dx < 0
+        LW = self.config.lane_width          # 3.5 m standard
+        same_lane = abs(dy) < LW / 2
+        adjacent_lane = LW / 2 <= abs(dy) < 1.5 * LW
+
+        # Each condition uses an exclusive geometric signature.
+        # Key design notes:
+        #   - In the ego-centric frame, objects stationary in world-X have vx ≈ -ego_velocity
+        #     (~-14 m/s), so abs(vx) is NOT a reliable crossing discriminator.
+        #   - Lateral offset (abs(dy)) separates side-road conflict types from lane-adjacent ones.
+
+        # 1. Broadside (HIGHEST PRIORITY)
+        # Signature: very high lateral speed (cross traffic), object not in same lane,
+        # within the forward intersection zone. abs(vx) is NOT gated: crossing objects
+        # in ego-centric frame always have |vx| ≈ ego_velocity regardless of crossing speed.
+        # Threshold 4.0 m/s filters stochastic noise peaks from CUTOFF/REAR_END objects
+        # (which have peak |vy| ≈ 1.75 m/s; real cross traffic has |vy| = 6-10 m/s).
+        if abs(vy) > 4.0 and not same_lane and -10 < dx < 45:
+            return ConflictType.BROADSIDE
+
+        # 2. Right-of-way
+        # Signature: lateral convergence from a far side position (side road / intersection arm).
+        # abs(dy) > 1.5*LW (5.25 m) only captures objects beyond the adjacent-lane zone
+        # (LANE_CHANGE/CUTOFF have |dy| ≈ LW = 3.5 m), preventing false noise-driven matches.
+        if 0 < dx < 60 and abs(dy) > 1.5 * LW and abs(vy) > 0.3:
+            toward_center = (dy > 0 and vy < -0.3) or (dy < 0 and vy > 0.3)
+            if toward_center:
+                return ConflictType.RIGHT_OF_WAY
+
+        # 3. Cutoff
+        # Signature: lateral intrusion from the adjacent-lane zone (not far out).
+        # dx extended to 40 m to cover the full near-miss detection window.
+        # abs(dy) < 2.0 * LW = 7 m explicitly excludes far-lateral side-road objects
+        # (ROW / BROADSIDE), which is the main fix for RIGHT_OF_WAY → CUTOFF confusion.
+        if 0 < dx < 40 and 0 < abs(dy) < 2.0 * LW and not same_lane:
+            toward_center = (dy > 0 and vy < -0.5) or (dy < 0 and vy > 0.5)
+            if toward_center:
+                return ConflictType.CUTOFF
+
+        # 4. Lane-change
+        # Signature: adjacent lane, lateral drift toward ego, significant speed differential.
+        # Cap raised to |vy| < 2.5 to match actual peak lane-change lateral velocity
+        # (~1.75 m/s = 1.0 * lane_width / maneuver_duration * 1.5).
+        # vx < -3.0 requires a strong speed differential to avoid REAR_END noise confusion.
+        if adjacent_lane and abs(vy) < 2.5:
+            toward_ego = (dy > 0 and vy < -0.2) or (dy < 0 and vy > 0.2)
+            if toward_ego and vx < -3.0:
+                return ConflictType.LANE_CHANGE
+
+        # 5. Rear-end (LOWEST PRIORITY)
+        # Signature: purely longitudinal closing, same lane, negligible lateral motion.
+        if ahead and same_lane and abs(vy) < 1.0 and vx < -1.0:
+            return ConflictType.REAR_END
+
         return ConflictType.NONE
     
     def predict_single_object(self, frame: FrameData, obj: TrackedObject) -> PredictionResult:
@@ -306,11 +327,10 @@ class NearMissPredictor(NearMissAlgorithm):
         # Conflict type message
         conflict_msgs = {
             ConflictType.REAR_END: "Rear-end collision risk",
-            ConflictType.SIDE_SWIPE: "Side-swipe collision risk",
-            ConflictType.CUT_IN: "Cut-in detected",
-            ConflictType.CUT_OUT: "Cut-out detected",
-            ConflictType.CROSSING: "Crossing conflict",
-            ConflictType.HEAD_ON: "Head-on collision risk"
+            ConflictType.LANE_CHANGE: "Lane change conflict",
+            ConflictType.CUTOFF: "Cutoff / Aggressive turn",
+            ConflictType.BROADSIDE: "Broadside / Crossing conflict",
+            ConflictType.RIGHT_OF_WAY: "Right-of-Way violation"
         }
         
         if conflict_type in conflict_msgs:

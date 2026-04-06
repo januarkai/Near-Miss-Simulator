@@ -354,12 +354,27 @@ class InfoPanel:
                  font=('Arial', 12, 'bold')).pack(pady=5)
         
         # Treeview for objects
-        columns = ('ID', 'Class', 'Dist', 'TTC', 'Risk')
+        columns = ('ID', 'Class', 'Dist', 'TTC', 'Risk', 'Type')
         self.tree = ttk.Treeview(self.frame, columns=columns, show='headings', height=10)
         
-        for col in columns:
-            self.tree.heading(col, text=col)
-            self.tree.column(col, width=60)
+        # Set column headers and widths
+        self.tree.heading('ID', text='ID')
+        self.tree.column('ID', width=30)
+        
+        self.tree.heading('Class', text='Class')
+        self.tree.column('Class', width=60)
+        
+        self.tree.heading('Dist', text='Dist')
+        self.tree.column('Dist', width=50)
+        
+        self.tree.heading('TTC', text='TTC')
+        self.tree.column('TTC', width=40)
+        
+        self.tree.heading('Risk', text='Risk')
+        self.tree.column('Risk', width=80)
+        
+        self.tree.heading('Type', text='Type')
+        self.tree.column('Type', width=80)
         
         self.tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         
@@ -408,6 +423,18 @@ class InfoPanel:
             ttc_str = f"{pred.ttc:.1f}" if pred.ttc is not None else "N/A"
             risk_str = pred.risk_level.name
             
+            # Format Conflict Type
+            conflict_str = "None"
+            if hasattr(pred, 'conflict_type') and pred.conflict_type:
+                 # Check if it's an Enum or string
+                 try:
+                     val = pred.conflict_type.value
+                 except AttributeError:
+                     val = str(pred.conflict_type)
+                 
+                 if val != "none":
+                     conflict_str = val.replace('_', ' ').title()
+
             # Add to tree
             tags = ()
             if pred.is_near_miss:
@@ -418,7 +445,8 @@ class InfoPanel:
                 pred.object_class,
                 f"{pred.distance:.1f}",
                 ttc_str,
-                risk_str
+                risk_str,
+                conflict_str
             ), tags=tags)
             
             # Update stats

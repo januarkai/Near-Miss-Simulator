@@ -1,0 +1,587 @@
+{
+  "algorithm_name": "Stochastic (Monte Carlo)",
+  "confusion_matrix": {
+    "true_positives": 20,
+    "true_negatives": 0,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.1,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 144,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 1,
+        "tn": 4,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 0.8,
+        "recall": 0.8,
+        "brier_score": 0.20277777777777778
+      }
+    },
+    "1": {
+      "scenario_id": 1,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.19999999999999996,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 106,
+      "min_ttc": 0.004571957789668062,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 2,
+        "tn": 3,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "brier_score": 0.19033333333333333
+      }
+    },
+    "2": {
+      "scenario_id": 2,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.3,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 135,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 2,
+        "tn": 3,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.6,
+        "recall": 0.6,
+        "brier_score": 0.33266666666666667
+      }
+    },
+    "3": {
+      "scenario_id": 3,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.30000000000000004,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 91,
+      "min_ttc": 0.005222890328986096,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 1,
+        "tn": 4,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 0.8,
+        "recall": 0.8,
+        "brier_score": 0.18711111111111112
+      }
+    },
+    "4": {
+      "scenario_id": 4,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.7999999999999998,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 110,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.24900000000000003
+      }
+    },
+    "5": {
+      "scenario_id": 5,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.20000000000000018,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 107,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.29388888888888887
+      }
+    },
+    "6": {
+      "scenario_id": 6,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.5,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 145,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.2667777777777778
+      }
+    },
+    "7": {
+      "scenario_id": 7,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 2.1,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 144,
+      "min_ttc": 0.005714380817825685,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.2587777777777778
+      }
+    },
+    "8": {
+      "scenario_id": 8,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 3.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 126,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 2,
+        "tn": 3,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.6,
+        "recall": 0.6,
+        "brier_score": 0.34244444444444444
+      }
+    },
+    "9": {
+      "scenario_id": 9,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.10000000000000009,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 156,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.3
+      }
+    },
+    "10": {
+      "scenario_id": 10,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 96,
+      "min_ttc": 0.006167477619286589,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.2617777777777778
+      }
+    },
+    "11": {
+      "scenario_id": 11,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.6000000000000001,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 108,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 3,
+        "tn": 2,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.6,
+        "precision": 0.5714285714285714,
+        "recall": 0.8,
+        "brier_score": 0.34944444444444445
+      }
+    },
+    "12": {
+      "scenario_id": 12,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 133,
+      "min_ttc": 0.02085455366868738,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.3004444444444444
+      }
+    },
+    "13": {
+      "scenario_id": 13,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.3,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 128,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.31622222222222224
+      }
+    },
+    "14": {
+      "scenario_id": 14,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 2.2,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 117,
+      "min_ttc": 0.013432434803900791,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.3
+      }
+    },
+    "15": {
+      "scenario_id": 15,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.9000000000000001,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 155,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.3
+      }
+    },
+    "16": {
+      "scenario_id": 16,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 2.4000000000000004,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 71,
+      "min_ttc": 0.03659811029185737,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 3,
+        "fp": 1,
+        "tn": 4,
+        "fn": 2,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.75,
+        "recall": 0.6,
+        "brier_score": 0.3004444444444444
+      }
+    },
+    "17": {
+      "scenario_id": 17,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 1.7000000000000002,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 159,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 2,
+        "tn": 3,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "brier_score": 0.20011111111111113
+      }
+    },
+    "18": {
+      "scenario_id": 18,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.30000000000000027,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 87,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 0,
+        "tn": 5,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.9,
+        "precision": 1.0,
+        "recall": 0.8,
+        "brier_score": 0.10188888888888888
+      }
+    },
+    "19": {
+      "scenario_id": 19,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.7999999999999998,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 106,
+      "min_ttc": 0.014057764708437372,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 4,
+        "fp": 2,
+        "tn": 3,
+        "fn": 1,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.7,
+        "precision": 0.6666666666666666,
+        "recall": 0.8,
+        "brier_score": 0.2177777777777778
+      }
+    }
+  },
+  "detection_times": [
+    1.1,
+    -0.19999999999999996,
+    1.3,
+    0.30000000000000004,
+    1.7999999999999998,
+    -0.20000000000000018,
+    1.5,
+    2.1,
+    3.0,
+    0.10000000000000009,
+    0.0,
+    -0.6000000000000001,
+    0.0,
+    1.3,
+    2.2,
+    0.9000000000000001,
+    2.4000000000000004,
+    1.7000000000000002,
+    -0.30000000000000027,
+    -0.7999999999999998
+  ],
+  "mean_detection_time": 0.8799999999999999,
+  "std_detection_time": 1.0856334556377671,
+  "risk_distribution": {
+    "SAFE": 26762,
+    "NEAR_MISS": 814,
+    "WARNING": 814,
+    "COLLISION": 1610
+  },
+  "conflict_distribution": {
+    "NONE": 30000
+  },
+  "ttc_stats": {
+    "min": 0.0,
+    "max": 11270.331866987563,
+    "mean": 48.82798790366171,
+    "std": 245.91592118926812
+  },
+  "drac_stats": {
+    "min": 3.501473843838648e-08,
+    "max": Infinity,
+    "mean": 5.98713231282831,
+    "std": 70.97312385466984
+  },
+  "brier_score": 0.0,
+  "auroc": 0.5,
+  "total_scenarios": 20,
+  "total_frames": 3000,
+  "total_predictions": 30000
+}

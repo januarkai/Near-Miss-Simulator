@@ -15,6 +15,7 @@ from tkinter import ttk, filedialog, messagebox
 import os
 import sys
 import copy
+import random
 
 # Add project to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -23,6 +24,8 @@ from Sources.data_generator import SyntheticDataGenerator
 from Sources.data_loader import DataLoader
 from Sources.scenario_types import FrameData, ScenarioType, TrackedObject, EgoVehicle
 from Algorithm.near_miss_predictor import NearMissPredictor
+from Algorithm.stochastic_predictor import StochasticPredictor # Register stochastic
+from Algorithm.baseline_predictor import DistancePredictor  # Register baseline
 from Algorithm.registry import AlgorithmRegistry
 from Utils.config import (
     DEFAULT_SIMULATION_CONFIG, DEFAULT_DATA_GENERATOR_CONFIG,
@@ -774,6 +777,230 @@ class ScenarioEditorDialog:
         return self.result
 
 
+class ReportComparisonDialog:
+    """Dialog for comparing two evaluation reports."""
+    
+    def __init__(self, parent):
+        self.dialog = tk.Toplevel(parent)
+        self.dialog.title("Compare Evaluation Reports")
+        self.dialog.geometry("900x700")
+        
+        # Center
+        self.dialog.update_idletasks()
+        x = parent.winfo_x() + (parent.winfo_width() - 900) // 2
+        y = parent.winfo_y() + (parent.winfo_height() - 700) // 2
+        self.dialog.geometry(f"+{x}+{y}")
+        
+        self.file1_path = tk.StringVar()
+        self.file2_path = tk.StringVar()
+        
+        self._build_ui()
+        
+    def _build_ui(self):
+        """Build UI elements."""
+        main_frame = ttk.Frame(self.dialog, padding=10)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+        
+        # Selection Frame
+        sel_frame = ttk.LabelFrame(main_frame, text="Select Evaluation Reports (JSON)", padding=10)
+        sel_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        # File 1
+        ttk.Label(sel_frame, text="Report 1 (Baseline):").grid(row=0, column=0, sticky='w')
+        ttk.Entry(sel_frame, textvariable=self.file1_path, width=50).grid(row=0, column=1, padx=5)
+        ttk.Button(sel_frame, text="Browse...", command=lambda: self._browse_file(self.file1_path)).grid(row=0, column=2)
+        
+        # File 2
+        ttk.Label(sel_frame, text="Report 2 (New):").grid(row=1, column=0, sticky='w', pady=5)
+        ttk.Entry(sel_frame, textvariable=self.file2_path, width=50).grid(row=1, column=1, padx=5, pady=5)
+        ttk.Button(sel_frame, text="Browse...", command=lambda: self._browse_file(self.file2_path)).grid(row=1, column=2, pady=5)
+        
+        # Compare Button
+        ttk.Button(sel_frame, text="COMPARE RESULTS", style='Big.TButton', command=self._do_compare).grid(row=2, column=0, columnspan=3, pady=10)
+        
+        # Results Area
+        res_frame = ttk.LabelFrame(main_frame, text="Comparison Results", padding=5)
+        res_frame.pack(fill=tk.BOTH, expand=True)
+        
+        scrollbar = ttk.Scrollbar(res_frame)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        self.result_text = tk.Text(res_frame, wrap=tk.NONE, font=('Courier', 11))
+        self.result_text.pack(fill=tk.BOTH, expand=True)
+        self.result_text.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.result_text.yview)
+
+    def _browse_file(self, var):
+        filename = filedialog.askopenfilename(
+            title="Select Evaluation JSON",
+            filetypes=[("JSON Files", "*.json"), ("All Files", "*.*")]
+        )
+        if filename:
+            var.set(filename)
+
+    def _do_compare(self):
+        import json
+        f1 = self.file1_path.get()
+        f2 = self.file2_path.get()
+        
+        if not f1 or not f2:
+            messagebox.showwarning("Missing Files", "Please select both report files.")
+            return
+            
+        try:
+            with open(f1, 'r') as f: r1 = json.load(f)
+            with open(f2, 'r') as f: r2 = json.load(f)
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to load files: {str(e)}")
+            return
+            
+        self._generate_comparison(r1, r2)
+        
+    def _generate_comparison(self, r1: dict, r2: dict):
+        lines = []
+        algo1 = r1.get('algorithm_name', 'Unknown')
+        algo2 = r2.get('algorithm_name', 'Unknown')
+        
+        lines.append("=" * 100)
+        lines.append("COMPARATIVE EVALUATION REPORT")
+        lines.append("=" * 100)
+        lines.append(f"Baseline (Report 1): {algo1}")
+        lines.append(f"Challenger (Report 2): {algo2}")
+        lines.append("")
+        
+        # 1. PER SCENARIO COMPARISON (Detailed)
+        lines.append("=" * 100)
+        lines.append("1. DETAILED PER-SCENARIO COMPARISON")
+        lines.append("=" * 100)
+        lines.append(f"{'Scenario':<10} {'Metric':<25} {'Report 1':<20} {'Report 2':<20} {'Difference'}")
+        lines.append("-" * 100)
+        
+        scen1 = {int(k): v for k, v in r1['scenario_results'].items()}
+        scen2 = {int(k): v for k, v in r2['scenario_results'].items()}
+        all_ids = sorted(list(set(scen1.keys()) | set(scen2.keys())))
+        
+        cm1 = r1.get('confusion_matrix', {})
+        cm2 = r2.get('confusion_matrix', {})
+        
+        # Track improvements/degradations for conclusion
+        improved_scenarios = 0
+        degraded_scenarios = 0
+        total_obj_acc_diff = 0.0
+        
+        for sid in all_ids:
+            s1 = scen1.get(sid, {})
+            s2 = scen2.get(sid, {})
+            
+            lines.append(f">> SCENARIO {sid}")
+            
+            # 1.1 Object Level Metrics
+            m1 = s1.get('obj_metrics', {})
+            m2 = s2.get('obj_metrics', {})
+            
+            # Accuracy
+            acc1 = m1.get('accuracy', 0.0)
+            acc2 = m2.get('accuracy', 0.0)
+            diff_acc = acc2 - acc1
+            total_obj_acc_diff += diff_acc
+            
+            lines.append(f"{'':<10} {'Accuracy':<25} {acc1:<20.4f} {acc2:<20.4f} {diff_acc:+.4f}")
+            lines.append(f"{'':<10} {'Precision':<25} {m1.get('precision', 0.0):<20.4f} {m2.get('precision', 0.0):<20.4f} {m2.get('precision', 0.0)-m1.get('precision', 0.0):+.4f}")
+            lines.append(f"{'':<10} {'Recall':<25} {m1.get('recall', 0.0):<20.4f} {m2.get('recall', 0.0):<20.4f} {m2.get('recall', 0.0)-m1.get('recall', 0.0):+.4f}")
+            lines.append(f"{'':<10} {'Brier Score':<25} {m1.get('brier_score', 0.0):<20.4f} {m2.get('brier_score', 0.0):<20.4f} {m2.get('brier_score', 0.0)-m1.get('brier_score', 0.0):+.4f}")
+            
+            # Additional User Request: t-IoU and Conflict Accuracy (if available)
+            if 'mean_tiou' in m1 or 'mean_tiou' in m2:
+                tiou1 = m1.get('mean_tiou', 0.0)
+                tiou2 = m2.get('mean_tiou', 0.0)
+                lines.append(f"{'':<10} {'Mean t-IoU':<25} {tiou1:<20.4f} {tiou2:<20.4f} {tiou2-tiou1:+.4f}")
+                
+            if 'type_accuracy' in m1 or 'type_accuracy' in m2:
+                ta1 = m1.get('type_accuracy', 0.0)
+                ta2 = m2.get('type_accuracy', 0.0)
+                lines.append(f"{'':<10} {'Conflict Type Acc':<25} {ta1:<20.4f} {ta2:<20.4f} {ta2-ta1:+.4f}")
+            
+            # 1.2 Object Counts (Per Object Status)
+            c1 = s1.get('obj_counts', {})
+            c2 = s2.get('obj_counts', {})
+            
+            lines.append("")
+            lines.append(f"{'':<10} [Per Object Status]")
+            lines.append(f"{'':<10} {'True Positive (TP)':<25} {c1.get('tp',0):<20} {c2.get('tp',0):<20} {c2.get('tp',0)-c1.get('tp',0):+d}")
+            lines.append(f"{'':<10} {'False Positive (FP)':<25} {c1.get('fp',0):<20} {c2.get('fp',0):<20} {c2.get('fp',0)-c1.get('fp',0):+d}")
+            lines.append(f"{'':<10} {'True Negative (TN)':<25} {c1.get('tn',0):<20} {c2.get('tn',0):<20} {c2.get('tn',0)-c1.get('tn',0):+d}")
+            lines.append(f"{'':<10} {'False Negative (FN)':<25} {c1.get('fn',0):<20} {c2.get('fn',0):<20} {c2.get('fn',0)-c1.get('fn',0):+d}")
+
+            # 1.3 Predicted Conflict Types
+            pct1 = s1.get('predicted_conflict_types', {})
+            pct2 = s2.get('predicted_conflict_types', {})
+            
+            if pct1 or pct2:
+                lines.append("")
+                lines.append(f"{'':<10} [Detected Conflict Types (Near-Miss)]")
+                # Get all unique object IDs
+                all_objs = sorted(list(set(pct1.keys()) | set(pct2.keys())))
+                for oid in all_objs:
+                    t1 = pct1.get(str(oid), pct1.get(oid, "-"))
+                    t2 = pct2.get(str(oid), pct2.get(oid, "-"))
+                    match_mark = " MATCH" if t1 == t2 and t1 != "-" else " DIFF" if t1 != t2 else ""
+                    lines.append(f"{'':<12} Object {oid}: {t1:<15} -> {t2:<15} {match_mark}")
+
+            lines.append("-" * 100)
+            
+            # Check scenario level improvement based on accuracy
+            if diff_acc > 0.001: improved_scenarios += 1
+            elif diff_acc < -0.001: degraded_scenarios += 1
+
+        lines.append("")
+        
+        # 3. CONCLUSION
+        lines.append("=" * 100)
+        lines.append("2. CONCLUSION")
+        lines.append("=" * 100)
+        
+        # Build logic for conclusion
+        avg_acc_diff = total_obj_acc_diff / len(all_ids) if all_ids else 0
+        overall_acc_diff = cm2.get('accuracy', 0) - cm1.get('accuracy', 0)
+        
+        verdict = "INCONCLUSIVE / SIMILAR PERFORMANCE"
+        if overall_acc_diff > 0.01 or (improved_scenarios > 0 and degraded_scenarios == 0):
+            verdict = f"POSITIVE: {algo2} outperforms {algo1}"
+        elif overall_acc_diff < -0.01 or (degraded_scenarios > 0 and improved_scenarios == 0):
+            verdict = f"NEGATIVE: {algo2} underperforms compared to {algo1}"
+            
+        lines.append(f"VERDICT: {verdict}")
+        lines.append("-" * 100)
+        lines.append(f"1. Global Accuracy: Changed by {overall_acc_diff:+.4f} ({cm1.get('accuracy',0):.4f} -> {cm2.get('accuracy',0):.4f})")
+        lines.append(f"2. Object Detection Accuracy: Average per-scenario change {avg_acc_diff:+.4f}")
+        
+        if r1.get('mean_detection_time', 0) > 0 and r2.get('mean_detection_time', 0) > 0:
+            det_diff = r2.get('mean_detection_time') - r1.get('mean_detection_time')
+            det_label = "faster" if det_diff < 0 else "slower" # Smaller time is better/faster? Or is it detection time from start? Usually earlier is better? 
+            # If "mean_detection_time" is "Time to event", then larger is better (detected earlier). 
+            # If it is "latency", smaller is better. 
+            # Assuming 'mean_detection_time' refers to inference speed? Or TTC? 
+            # Let's assume it's simply a metric where we just show difference.
+            lines.append(f"3. Detection Time Metric: {det_diff:+.4f}s")
+
+        # Sequence-Level Global Metrics
+        if 'mean_tiou' in r1 or 'mean_tiou' in r2:
+            g_tiou1 = r1.get('mean_tiou', 0.0)
+            g_tiou2 = r2.get('mean_tiou', 0.0)
+            lines.append(f"4. Global Mean t-IoU:     {g_tiou2-g_tiou1:+.4f} ({g_tiou1:.4f} -> {g_tiou2:.4f})")
+            
+        if 'type_accuracy_global' in r1 or 'type_accuracy_global' in r2:
+            g_ta1 = r1.get('type_accuracy_global', 0.0)
+            g_ta2 = r2.get('type_accuracy_global', 0.0)
+            lines.append(f"5. Conflict Type Acc:     {g_ta2-g_ta1:+.4f} ({g_ta1:.4f} -> {g_ta2:.4f})")
+
+        lines.append("")
+            
+        self.result_text.config(state=tk.NORMAL)
+        self.result_text.delete('1.0', tk.END)
+        self.result_text.insert('1.0', "\n".join(lines))
+        self.result_text.config(state=tk.DISABLED)
+
+
 class SimulatorApp:
     """Main simulator application."""
     
@@ -874,21 +1101,27 @@ class SimulatorApp:
         self.seed_var = tk.StringVar(value="42")
         seed_entry = ttk.Entry(gen_frame, textvariable=self.seed_var, width=15)
         seed_entry.grid(row=1, column=1, sticky='e', pady=3, padx=(10, 0))
+
+        # FPS (Frames Per Second)
+        ttk.Label(gen_frame, text="FPS:").grid(row=2, column=0, sticky='w', pady=3)
+        self.fps_var = tk.StringVar(value="10")
+        fps_spin = ttk.Spinbox(gen_frame, from_=1, to=100, textvariable=self.fps_var, width=13)
+        fps_spin.grid(row=2, column=1, sticky='e', pady=3, padx=(10, 0))
         
         # Generate button
         gen_btn = ttk.Button(gen_frame, text="Generate Data", 
                             command=self._on_generate, style='Big.TButton')
-        gen_btn.grid(row=2, column=0, columnspan=2, sticky='ew', pady=(10, 0))
+        gen_btn.grid(row=3, column=0, columnspan=2, sticky='ew', pady=(10, 0))
         
         # Custom scenario button
         custom_btn = ttk.Button(gen_frame, text="Create Custom Scenario", 
                                command=self._on_create_custom)
-        custom_btn.grid(row=3, column=0, columnspan=2, sticky='ew', pady=(5, 0))
+        custom_btn.grid(row=4, column=0, columnspan=2, sticky='ew', pady=(5, 0))
         
         # Edit current scenario button
         edit_btn = ttk.Button(gen_frame, text="Edit Current Scenario", 
                              command=self._on_edit_scenario)
-        edit_btn.grid(row=4, column=0, columnspan=2, sticky='ew', pady=(5, 0))
+        edit_btn.grid(row=5, column=0, columnspan=2, sticky='ew', pady=(5, 0))
         
         # ===== Data I/O Section =====
         io_frame = ttk.LabelFrame(parent, text="Import / Export", padding=10)
@@ -987,6 +1220,8 @@ class SimulatorApp:
                   command=self._on_run_evaluation).grid(row=1, column=0, sticky='ew', pady=2)
         ttk.Button(algo_frame, text="Show Report", 
                   command=self._on_show_report).grid(row=2, column=0, sticky='ew', pady=2)
+        ttk.Button(algo_frame, text="Compare Reports", 
+                  command=self._on_compare_reports).grid(row=3, column=0, sticky='ew', pady=2)
         
         # ===== Threshold Settings =====
         thresh_frame = ttk.LabelFrame(parent, text="Thresholds", padding=10)
@@ -1079,7 +1314,22 @@ class SimulatorApp:
         """Handle generate button click."""
         try:
             num_scenarios = int(self.num_scenarios_var.get())
-            seed = int(self.seed_var.get())
+            
+            # FPS Handling
+            try:
+                fps = int(self.fps_var.get())
+                if fps <= 0: raise ValueError
+                self.sim_config.dt = 1.0 / fps
+            except (ValueError, AttributeError):
+                # Fallback or strict error? 
+                # Strict is better for scientific tool
+                messagebox.showerror("Error", "Invalid FPS value. Must be a positive integer.")
+                return
+
+            # Auto-randomize seed for new variety every time
+            # We generate a new seed, update the UI to show it, and then use it.
+            seed = random.randint(0, 999999)
+            self.seed_var.set(str(seed))
         except ValueError:
             messagebox.showerror("Error", "Invalid number of scenarios or seed")
             return
@@ -1331,9 +1581,10 @@ class SimulatorApp:
         if self.current_predictions is None:
             messagebox.showerror("Error", "No predictions available.\nRun prediction first.")
             return
-        
+            
+        algo_name = self.algo_var.get() or "Unknown"
         self.evaluation_results = self.evaluator.evaluate_dataset(
-            self.current_predictions, self.current_dataset
+            self.current_predictions, self.current_dataset, algorithm_name=algo_name
         )
         
         json_path, report_path = self.evaluator.save_results(self.evaluation_results)
@@ -1366,7 +1617,11 @@ class SimulatorApp:
         report = self.evaluator.generate_report(self.evaluation_results)
         text_widget.insert('1.0', report)
         text_widget.config(state=tk.DISABLED)
-    
+        
+    def _on_compare_reports(self):
+        """Open the report comparison dialog."""
+        dialog = ReportComparisonDialog(self.root)
+        
     def _on_apply_thresholds(self):
         """Apply new threshold settings."""
         try:

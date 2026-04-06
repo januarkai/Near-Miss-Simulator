@@ -1,0 +1,74 @@
+{
+  "algorithm_name": "Stochastic (Monte Carlo)",
+  "confusion_matrix": {
+    "true_positives": 1,
+    "true_negatives": 0,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": -0.30000000000000027,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 153,
+      "min_ttc": 0.0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 2,
+        "tn": 3,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.8,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "brier_score": 0.20177777777777778
+      }
+    }
+  },
+  "detection_times": [
+    -0.30000000000000027
+  ],
+  "mean_detection_time": -0.30000000000000027,
+  "std_detection_time": 0.0,
+  "risk_distribution": {
+    "SAFE": 1307,
+    "WARNING": 40,
+    "NEAR_MISS": 37,
+    "COLLISION": 116
+  },
+  "conflict_distribution": {
+    "NONE": 1500
+  },
+  "ttc_stats": {
+    "min": 0.0,
+    "max": 2990.9330517209273,
+    "mean": 60.90480460908551,
+    "std": 214.15648926913866
+  },
+  "drac_stats": {
+    "min": 8.391697141006134e-08,
+    "max": Infinity,
+    "mean": 5.202812638835814,
+    "std": 12.686675201718602
+  },
+  "brier_score": 0.0,
+  "auroc": 0.5,
+  "total_scenarios": 1,
+  "total_frames": 150,
+  "total_predictions": 1500
+}

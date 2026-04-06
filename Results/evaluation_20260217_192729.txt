@@ -1,0 +1,52 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-02-17 19:27:29
+
+GLOBAL PERFORMANCE METRICS
+============================================================
+Algorithm:           Rule-Based SSM
+Total Scenarios:     1
+Accuracy (Scenario): 1.0000
+Precision:           1.0000
+Recall:              1.0000
+F1 Score:            1.0000
+Brier Score:         0.0000
+AUROC:               0.5000
+
+SEQUENCE-LEVEL METRICS (GOLD STANDARD)
+Conflict Type Acc:   0.4000 (on Correct Detections)
+Mean t-IoU:          0.0000 (Temporal Overlap Quality)
+
+CONFLICT TYPE CONFUSION (Actual -> Predicted):
+  REAR_END             -> RIGHT_OF_WAY:1
+  LANE_CHANGE          -> LANE_CHANGE:1
+  CUTOFF               -> BROADSIDE:1
+  BROADSIDE            -> LANE_CHANGE:1
+  RIGHT_OF_WAY         -> RIGHT_OF_WAY:1
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object Evaluation]
+   Counts:       TP=5 | FP=5 | TN=0 | FN=0 (Total: 10)
+   Metrics:      Acc=0.50 | Prec=0.50 | Rec=1.00 | Brier=0.4640
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 6: REAR_END, Obj 1: LANE_CHANGE, Obj 2: BROADSIDE, Obj 3: LANE_CHANGE, Obj 7: REAR_END, Obj 4: RIGHT_OF_WAY, Obj 0: BROADSIDE, Obj 8: LANE_CHANGE, Obj 9: CUTOFF, Obj 5: LANE_CHANGE
+   Detection T:  0.00s
+   Min TTC:      0.00s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.00       inf        0.00s     
+
+============================================================

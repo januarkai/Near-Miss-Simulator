@@ -1,0 +1,141 @@
+{
+  "algorithm_name": "Rule-Based SSM",
+  "confusion_matrix": {
+    "true_positives": 1,
+    "true_negatives": 0,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 4500,
+      "num_near_miss_predictions": 1221,
+      "min_ttc": 0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 5,
+        "tn": 0,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "brier_score": 0.46399999999999997,
+        "type_accuracy": 0.4,
+        "mean_tiou": 0.0
+      },
+      "type_confusion_entries": [
+        [
+          "REAR_END",
+          "RIGHT_OF_WAY"
+        ],
+        [
+          "LANE_CHANGE",
+          "LANE_CHANGE"
+        ],
+        [
+          "CUTOFF",
+          "BROADSIDE"
+        ],
+        [
+          "BROADSIDE",
+          "LANE_CHANGE"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "RIGHT_OF_WAY"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "predicted_conflict_types": {
+        "6": "REAR_END",
+        "1": "LANE_CHANGE",
+        "2": "BROADSIDE",
+        "3": "LANE_CHANGE",
+        "7": "REAR_END",
+        "4": "RIGHT_OF_WAY",
+        "0": "BROADSIDE",
+        "8": "LANE_CHANGE",
+        "9": "CUTOFF",
+        "5": "LANE_CHANGE"
+      }
+    }
+  },
+  "mean_tiou": 0.0,
+  "type_accuracy_global": 0.4,
+  "type_confusion_matrix": {
+    "REAR_END": {
+      "RIGHT_OF_WAY": 1
+    },
+    "LANE_CHANGE": {
+      "LANE_CHANGE": 1
+    },
+    "CUTOFF": {
+      "BROADSIDE": 1
+    },
+    "BROADSIDE": {
+      "LANE_CHANGE": 1
+    },
+    "RIGHT_OF_WAY": {
+      "RIGHT_OF_WAY": 1
+    }
+  },
+  "detection_times": [
+    0.0
+  ],
+  "mean_detection_time": 0.0,
+  "std_detection_time": 0.0,
+  "risk_distribution": {
+    "SAFE": 2557,
+    "WARNING": 722,
+    "NEAR_MISS": 1151,
+    "COLLISION": 70
+  },
+  "conflict_distribution": {
+    "REAR_END": 158,
+    "NONE": 3475,
+    "RIGHT_OF_WAY": 195,
+    "LANE_CHANGE": 438,
+    "CUTOFF": 97,
+    "BROADSIDE": 137
+  },
+  "ttc_stats": {
+    "min": 0.0,
+    "max": 1301.1695024493006,
+    "mean": 8.095993681116532,
+    "std": 44.7363863076461
+  },
+  "drac_stats": {
+    "min": 2.91243616066959e-05,
+    "max": Infinity,
+    "mean": 14.573010376814313,
+    "std": 107.57968181358508
+  },
+  "brier_score": 0.0,
+  "auroc": 0.5,
+  "total_scenarios": 1,
+  "total_frames": 450,
+  "total_predictions": 4500
+}

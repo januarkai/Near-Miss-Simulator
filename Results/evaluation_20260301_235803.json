@@ -1,0 +1,248 @@
+{
+  "algorithm_name": "Rule-Based SSM",
+  "confusion_matrix": {
+    "true_positives": 5,
+    "true_negatives": 0,
+    "false_positives": 5,
+    "false_negatives": 0,
+    "accuracy": 0.5,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1_score": 0.6666666666666666,
+    "false_positive_rate": 1.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 0.0,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 114,
+      "min_ttc": 0.4395581041931943,
+      "max_drac": 10.141191013222647,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 5,
+        "tn": 0,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "brier_score": 0.33099999999999996,
+        "type_accuracy": 0.4,
+        "mean_tiou": 0.28053691275167786
+      },
+      "type_confusion_entries": [
+        [
+          "REAR_END",
+          "REAR_END"
+        ],
+        [
+          "LANE_CHANGE",
+          "LANE_CHANGE"
+        ],
+        [
+          "CUTOFF",
+          "LANE_CHANGE"
+        ],
+        [
+          "BROADSIDE",
+          "REAR_END"
+        ],
+        [
+          "RIGHT_OF_WAY",
+          "REAR_END"
+        ]
+      ],
+      "tiou_scores_list": [
+        0.4832214765100671,
+        0.14093959731543623,
+        0.3288590604026846,
+        0.2080536912751678,
+        0.24161073825503357
+      ],
+      "predicted_conflict_types": {
+        "2": "LANE_CHANGE",
+        "3": "REAR_END",
+        "6": "BROADSIDE",
+        "4": "REAR_END",
+        "8": "LANE_CHANGE"
+      },
+      "object_details": [
+        {
+          "object_id": 0,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.7999999999999999,
+          "result_type": "TP",
+          "gt_type": "near_miss_rear_end",
+          "pred_type": "REAR_END",
+          "tiou": 0.4832214765100671,
+          "detection_delay": 0.0
+        },
+        {
+          "object_id": 1,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.7999999999999999,
+          "result_type": "TP",
+          "gt_type": "near_miss_lane_change",
+          "pred_type": "LANE_CHANGE",
+          "tiou": 0.14093959731543623,
+          "detection_delay": 0.4
+        },
+        {
+          "object_id": 2,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.8999999999999999,
+          "result_type": "TP",
+          "gt_type": "near_miss_cutoff",
+          "pred_type": "LANE_CHANGE",
+          "tiou": 0.3288590604026846,
+          "detection_delay": 0.4
+        },
+        {
+          "object_id": 3,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 0.9999999999999999,
+          "result_type": "TP",
+          "gt_type": "near_miss_broadside",
+          "pred_type": "REAR_END",
+          "tiou": 0.2080536912751678,
+          "detection_delay": 0.4
+        },
+        {
+          "object_id": 4,
+          "ground_truth": true,
+          "predicted": true,
+          "confidence": 1.0,
+          "result_type": "TP",
+          "gt_type": "near_miss_right_of_way",
+          "pred_type": "REAR_END",
+          "tiou": 0.24161073825503357,
+          "detection_delay": 0.4
+        },
+        {
+          "object_id": 5,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.7,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "None",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 6,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.7999999999999999,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "BROADSIDE",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 7,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.7999999999999999,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "LANE_CHANGE",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 8,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.8999999999999999,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "LANE_CHANGE",
+          "tiou": 0.0,
+          "detection_delay": null
+        },
+        {
+          "object_id": 9,
+          "ground_truth": false,
+          "predicted": true,
+          "confidence": 0.7999999999999999,
+          "result_type": "FP",
+          "gt_type": "None",
+          "pred_type": "LANE_CHANGE",
+          "tiou": 0.0,
+          "detection_delay": null
+        }
+      ]
+    }
+  },
+  "mean_tiou": 0.28053691275167786,
+  "type_accuracy_global": 0.4,
+  "type_confusion_matrix": {
+    "REAR_END": {
+      "REAR_END": 1
+    },
+    "LANE_CHANGE": {
+      "LANE_CHANGE": 1
+    },
+    "CUTOFF": {
+      "LANE_CHANGE": 1
+    },
+    "BROADSIDE": {
+      "REAR_END": 1
+    },
+    "RIGHT_OF_WAY": {
+      "REAR_END": 1
+    }
+  },
+  "detection_times": [
+    0.0
+  ],
+  "mean_detection_time": 0.0,
+  "std_detection_time": 0.0,
+  "risk_distribution": {
+    "SAFE": 1154,
+    "WARNING": 232,
+    "NEAR_MISS": 113,
+    "COLLISION": 1
+  },
+  "conflict_distribution": {
+    "REAR_END": 24,
+    "NONE": 1315,
+    "RIGHT_OF_WAY": 10,
+    "LANE_CHANGE": 100,
+    "BROADSIDE": 35,
+    "CUTOFF": 16
+  },
+  "ttc_stats": {
+    "min": 0.4395581041931943,
+    "max": 3942.326330927184,
+    "mean": 65.9797823672921,
+    "std": 353.8497304792679
+  },
+  "drac_stats": {
+    "min": 0.013635888119334074,
+    "max": 10.141191013222647,
+    "mean": 1.6137993502999004,
+    "std": 3.2790584132911533
+  },
+  "brier_score": 0.33099999999999996,
+  "auroc": 0.92,
+  "total_scenarios": 1,
+  "total_frames": 150,
+  "total_predictions": 1500
+}

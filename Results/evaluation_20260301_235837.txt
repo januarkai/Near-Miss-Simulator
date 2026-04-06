@@ -1,0 +1,64 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-03-01 23:58:37
+
+GLOBAL PERFORMANCE METRICS (OBJECT-LEVEL AGGREGATION)
+============================================================
+Algorithm:           Stochastic (Monte Carlo)
+Total Scenarios:     1
+Total Objects:       10
+Accuracy:            0.7000
+Precision:           1.0000
+Recall:              0.4000
+F1 Score:            0.5714
+Brier Score:         0.2482
+AUROC:               0.9200
+
+SEQUENCE-LEVEL METRICS (GOLD STANDARD)
+Conflict Type Acc:   0.0000 (on Correct Detections)
+Mean t-IoU:          0.0750 (Temporal Overlap Quality)
+
+CONFLICT TYPE CONFUSION (Actual -> Predicted):
+  CUTOFF               -> NONE:1
+  RIGHT_OF_WAY         -> REAR_END:1
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   0    | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   1    | FN     | LANE_CHANGE          | NONE                 | 0.00   | 0.00   | -     
+   2    | TP     | CUTOFF               | NONE                 | 0.60   | 0.00   | 5.80s 
+   3    | FN     | BROADSIDE            | NONE                 | 0.43   | 0.00   | -     
+   4    | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.15   | 2.80s 
+   5    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   6    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   7    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   8    | TN     | NONE                 | NONE                 | 0.03   | 0.00   | -     
+   9    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=2 | FP=0 | TN=5 | FN=3 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=1.00 | Rec=0.40 | Brier=0.2482
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 3: RIGHT_OF_WAY, Obj 4: REAR_END, Obj 2: LANE_CHANGE
+   Detection T:  -2.20s
+   Min TTC:      0.31s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.31       11.41      -2.20s    
+
+============================================================

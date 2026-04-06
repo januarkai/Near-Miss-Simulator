@@ -330,8 +330,9 @@ class TrajectoryPredictor:
         for ego_pred, obj_pred in zip(ego_preds, obj_preds):
             dist = np.sqrt((obj_pred.x - ego_pred.x)**2 + (obj_pred.y - ego_pred.y)**2)
             
-            # Check for collision (overlap)
-            safe_dist = (ego.length + obj.length) / 2
+            # Check for collision (centroid separation within fixed conflict-zone threshold;
+            # object dimensions excluded from computation)
+            safe_dist = 2.5  # metres — fixed threshold, no per-object size used
             
             if dist < safe_dist and dist < min_dist:
                 min_dist = dist

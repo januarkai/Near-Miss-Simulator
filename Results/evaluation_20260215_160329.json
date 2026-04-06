@@ -1,0 +1,77 @@
+{
+  "algorithm_name": "Rule-Based SSM",
+  "confusion_matrix": {
+    "true_positives": 1,
+    "true_negatives": 0,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0
+  },
+  "scenario_results": {
+    "0": {
+      "scenario_id": 0,
+      "has_actual_near_miss": true,
+      "prediction_detected": true,
+      "result_type": "true_positive",
+      "detection_time": 2.1,
+      "max_risk_level": "COLLISION",
+      "num_predictions": 1500,
+      "num_near_miss_predictions": 391,
+      "min_ttc": 0,
+      "max_drac": Infinity,
+      "max_confidence": 1.0,
+      "obj_counts": {
+        "tp": 5,
+        "fp": 5,
+        "tn": 0,
+        "fn": 0,
+        "total": 10
+      },
+      "obj_metrics": {
+        "accuracy": 0.5,
+        "precision": 0.5,
+        "recall": 1.0,
+        "brier_score": 0.3919999999999999
+      }
+    }
+  },
+  "detection_times": [
+    2.1
+  ],
+  "mean_detection_time": 2.1,
+  "std_detection_time": 0.0,
+  "risk_distribution": {
+    "SAFE": 886,
+    "NEAR_MISS": 354,
+    "WARNING": 223,
+    "COLLISION": 37
+  },
+  "conflict_distribution": {
+    "NONE": 1169,
+    "CROSSING": 194,
+    "REAR_END": 67,
+    "CUT_IN": 70
+  },
+  "ttc_stats": {
+    "min": 0.0,
+    "max": 5776.906544997756,
+    "mean": 24.230983614034674,
+    "std": 263.3014405371778
+  },
+  "drac_stats": {
+    "min": 1.466673992873044e-06,
+    "max": Infinity,
+    "mean": 43.50153266173838,
+    "std": 120.3357988528927
+  },
+  "brier_score": 0.0,
+  "auroc": 0.5,
+  "total_scenarios": 1,
+  "total_frames": 150,
+  "total_predictions": 1500
+}

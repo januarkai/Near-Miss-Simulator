@@ -17,7 +17,7 @@ class DataLoader:
     CSV_COLUMNS = [
         'scenario_id', 'frame_id', 'timestamp', 'object_id', 'object_class',
         'x', 'y', 'vx', 'vy', 'length', 'width', 'heading',
-        'ego_vx', 'ego_vy', 'ground_truth'
+        'ego_vx', 'ego_vy', 'ground_truth_label', 'conflict_type', 'ttc'
     ]
     
     def __init__(self, base_dir: str = None):
@@ -52,6 +52,23 @@ class DataLoader:
             for scenario_id, frames in dataset.items():
                 for frame in frames:
                     for obj in frame.objects:
+                        
+                        # Find if this object has a corresponding ground truth event
+                        gt_label = 'None'
+                        conflict_type = 'None'
+                        ttc_val = 'None'
+                        
+                        if frame.ground_truth_events:
+                            for event in frame.ground_truth_events:
+                                # Events should have object_id to link to specific objects
+                                if event.get('object_id') == obj.object_id:
+                                    gt_label = event.get('type', 'None')
+                                    # Handle case where type is near_miss but stored differently
+                                    if gt_label == 'near_miss':
+                                        conflict_type = event.get('scenario_type', 'None')
+                                        ttc_val = event.get('ttc', 'None')
+                                    break
+
                         row = {
                             'scenario_id': scenario_id,
                             'frame_id': frame.frame_id,
@@ -67,7 +84,9 @@ class DataLoader:
                             'heading': obj.heading,
                             'ego_vx': frame.ego.vx,
                             'ego_vy': frame.ego.vy,
-                            'ground_truth': json.dumps(frame.ground_truth_events) if frame.ground_truth_events else ''
+                            'ground_truth_label': gt_label,
+                            'conflict_type': conflict_type,
+                            'ttc': str(ttc_val)
                         }
                         writer.writerow(row)
         
@@ -136,13 +155,14 @@ class DataLoader:
                         'timestamp': float(row['timestamp']),
                         'ego_vx': float(row['ego_vx']),
                         'ego_vy': float(row['ego_vy']),
-                        'ground_truth': row.get('ground_truth', ''),
+                        'ground_truth_events': [],
                         'objects': []
                     }
                 
                 # Create tracked object
+                obj_id = int(row['object_id'])
                 obj = TrackedObject(
-                    object_id=int(row['object_id']),
+                    object_id=obj_id,
                     x=float(row['x']),
                     y=float(row['y']),
                     vx=float(row['vx']),
@@ -154,6 +174,29 @@ class DataLoader:
                 )
                 
                 rows_by_scenario_frame[scenario_id][frame_id]['objects'].append(obj)
+                
+                # Reconstruct ground truth event from row columns
+                gt_label = row.get('ground_truth_label', 'None')
+                if gt_label != 'None' and gt_label != '':
+                    
+                    # Normalize 'check' values if any
+                    conflict_type = row.get('conflict_type', 'None')
+                    ttc_str = row.get('ttc', 'None')
+                    
+                    event = {
+                        "type": gt_label,
+                        "object_id": obj_id,
+                        "scenario_type": conflict_type,
+                        "time": float(row['timestamp'])
+                    }
+                    
+                    if ttc_str != 'None' and ttc_str != '':
+                        try:
+                            event['ttc'] = float(ttc_str)
+                        except ValueError:
+                            pass
+                            
+                    rows_by_scenario_frame[scenario_id][frame_id]['ground_truth_events'].append(event)
         
         # Convert to FrameData structure
         dataset = {}
@@ -164,13 +207,8 @@ class DataLoader:
             for frame_id in sorted(frames_dict.keys()):
                 frame_info = frames_dict[frame_id]
                 
-                # Parse ground truth
-                gt_events = []
-                if frame_info['ground_truth']:
-                    try:
-                        gt_events = json.loads(frame_info['ground_truth'])
-                    except json.JSONDecodeError:
-                        pass
+                # Use reconstructed events
+                gt_events = frame_info['ground_truth_events']
                 
                 ego = EgoVehicle(
                     vx=frame_info['ego_vx'],

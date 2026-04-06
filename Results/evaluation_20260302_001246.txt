@@ -1,0 +1,337 @@
+============================================================
+NEAR-MISS PREDICTION EVALUATION REPORT (DETAILED ANALYSIS)
+============================================================
+Generated: 2026-03-02 00:12:46
+
+GLOBAL PERFORMANCE METRICS (OBJECT-LEVEL AGGREGATION)
+============================================================
+Algorithm:           Stochastic (Monte Carlo)
+Total Scenarios:     10
+Total Objects:       100
+Accuracy:            0.7300
+Precision:           0.8485
+Recall:              0.5600
+F1 Score:            0.6747
+Brier Score:         0.2503
+AUROC:               0.7808
+
+SEQUENCE-LEVEL METRICS (GOLD STANDARD)
+Conflict Type Acc:   0.0000 (on Correct Detections)
+Mean t-IoU:          0.1442 (Temporal Overlap Quality)
+
+CONFLICT TYPE CONFUSION (Actual -> Predicted):
+  LANE_CHANGE          -> NONE:2, REAR_END:2
+  BROADSIDE            -> RIGHT_OF_WAY:7, REAR_END:3
+  RIGHT_OF_WAY         -> REAR_END:6, CUTOFF:4
+  REAR_END             -> CUTOFF:2, RIGHT_OF_WAY:1
+  CUTOFF               -> REAR_END:1
+
+DETAILED SCENARIO ANALYSIS
+============================================================
+
+>> SCENARIO 0
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   0    | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   1    | TP     | LANE_CHANGE          | NONE                 | 0.80   | 0.00   | 1.90s 
+   2    | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   3    | TP     | BROADSIDE            | RIGHT_OF_WAY         | 0.97   | 0.09   | 2.00s 
+   4    | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.12   | 3.10s 
+   5    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   6    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   7    | FP     | NONE                 | CUTOFF               | 0.93   | 0.00   | -     
+   8    | TN     | NONE                 | NONE                 | 0.03   | 0.00   | -     
+   9    | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=3 | FP=1 | TN=4 | FN=2 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=0.75 | Rec=0.60 | Brier=0.2913
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 3: RIGHT_OF_WAY, Obj 4: CUTOFF, Obj 7: CUTOFF
+   Detection T:  -1.90s
+   Min TTC:      0.03s
+----------------------------------------
+
+>> SCENARIO 1
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   100  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   101  | FN     | LANE_CHANGE          | NONE                 | 0.23   | 0.00   | -     
+   102  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   103  | TP     | BROADSIDE            | REAR_END             | 1.00   | 0.19   | 1.80s 
+   104  | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.12   | 2.80s 
+   105  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   106  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   107  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   108  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   109  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=2 | FP=0 | TN=5 | FN=3 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=1.00 | Rec=0.40 | Brier=0.2588
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 103: REAR_END, Obj 104: RIGHT_OF_WAY
+   Detection T:  -1.80s
+   Min TTC:      0.01s
+----------------------------------------
+
+>> SCENARIO 2
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   200  | TP     | REAR_END             | CUTOFF               | 1.00   | 0.17   | 6.60s 
+   201  | FN     | LANE_CHANGE          | NONE                 | 0.00   | 0.00   | -     
+   202  | TP     | CUTOFF               | REAR_END             | 1.00   | 0.25   | 3.50s 
+   203  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.20   | 1.70s 
+   204  | TP     | RIGHT_OF_WAY         | CUTOFF               | 1.00   | 0.15   | 2.70s 
+   205  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   206  | TN     | NONE                 | NONE                 | 0.23   | 0.00   | -     
+   207  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   208  | TN     | NONE                 | NONE                 | 0.07   | 0.00   | -     
+   209  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=4 | FP=0 | TN=5 | FN=1 (Total: 10)
+   Metrics:      Acc=0.90 | Prec=1.00 | Rec=0.80 | Brier=0.1059
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 203: CUTOFF, Obj 204: CUTOFF, Obj 202: REAR_END, Obj 200: CUTOFF, Obj 206: RIGHT_OF_WAY
+   Detection T:  -1.70s
+   Min TTC:      0.07s
+----------------------------------------
+
+>> SCENARIO 3
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   300  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   301  | FN     | LANE_CHANGE          | NONE                 | 0.10   | 0.00   | -     
+   302  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   303  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.18   | 1.90s 
+   304  | TP     | RIGHT_OF_WAY         | CUTOFF               | 1.00   | 0.13   | 3.20s 
+   305  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   306  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   307  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   308  | TN     | NONE                 | NONE                 | 0.20   | 0.00   | -     
+   309  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=2 | FP=0 | TN=5 | FN=3 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=1.00 | Rec=0.40 | Brier=0.2850
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 303: REAR_END, Obj 304: CUTOFF
+   Detection T:  -1.90s
+   Min TTC:      0.18s
+----------------------------------------
+
+>> SCENARIO 4
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   400  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   401  | TP     | LANE_CHANGE          | REAR_END             | 0.83   | 0.35   | 1.70s 
+   402  | FN     | CUTOFF               | NONE                 | 0.13   | 0.00   | -     
+   403  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.35   | 1.70s 
+   404  | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.12   | 2.90s 
+   405  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   406  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   407  | FP     | NONE                 | NONE                 | 1.00   | 0.00   | -     
+   408  | TN     | NONE                 | NONE                 | 0.07   | 0.00   | -     
+   409  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=3 | FP=1 | TN=4 | FN=2 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=0.75 | Rec=0.60 | Brier=0.2783
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 401: REAR_END, Obj 403: RIGHT_OF_WAY, Obj 404: RIGHT_OF_WAY, Obj 407: CUTOFF, Obj 402: BROADSIDE
+   Detection T:  -1.70s
+   Min TTC:      0.02s
+----------------------------------------
+
+>> SCENARIO 5
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   500  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   501  | TP     | LANE_CHANGE          | NONE                 | 0.63   | 0.03   | 2.40s 
+   502  | FN     | CUTOFF               | NONE                 | 0.03   | 0.00   | -     
+   503  | TP     | BROADSIDE            | REAR_END             | 1.00   | 0.17   | 1.80s 
+   504  | TP     | RIGHT_OF_WAY         | CUTOFF               | 1.00   | 0.14   | 3.00s 
+   505  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   506  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   507  | TN     | NONE                 | NONE                 | 0.13   | 0.00   | -     
+   508  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   509  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=3 | FP=0 | TN=5 | FN=2 (Total: 10)
+   Metrics:      Acc=0.80 | Prec=1.00 | Rec=0.60 | Brier=0.2087
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 503: REAR_END, Obj 504: CUTOFF
+   Detection T:  -1.80s
+   Min TTC:      0.13s
+----------------------------------------
+
+>> SCENARIO 6
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   600  | TP     | REAR_END             | RIGHT_OF_WAY         | 0.57   | 0.02   | 10.50s
+   601  | FN     | LANE_CHANGE          | NONE                 | 0.07   | 0.00   | -     
+   602  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   603  | TP     | BROADSIDE            | REAR_END             | 1.00   | 0.16   | 1.90s 
+   604  | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.15   | 2.80s 
+   605  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   606  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   607  | FP     | NONE                 | REAR_END             | 0.97   | 0.00   | -     
+   608  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   609  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=3 | FP=1 | TN=4 | FN=2 (Total: 10)
+   Metrics:      Acc=0.70 | Prec=0.75 | Rec=0.60 | Brier=0.2993
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 603: RIGHT_OF_WAY, Obj 604: REAR_END, Obj 607: REAR_END, Obj 600: RIGHT_OF_WAY
+   Detection T:  -1.90s
+   Min TTC:      0.37s
+----------------------------------------
+
+>> SCENARIO 7
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   700  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   701  | FN     | LANE_CHANGE          | NONE                 | 0.37   | 0.00   | -     
+   702  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   703  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.09   | 2.10s 
+   704  | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.14   | 2.90s 
+   705  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   706  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   707  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   708  | FP     | NONE                 | RIGHT_OF_WAY         | 0.73   | 0.00   | -     
+   709  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=2 | FP=1 | TN=4 | FN=3 (Total: 10)
+   Metrics:      Acc=0.60 | Prec=0.67 | Rec=0.40 | Brier=0.2939
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 703: RIGHT_OF_WAY, Obj 701: LANE_CHANGE, Obj 704: RIGHT_OF_WAY, Obj 708: RIGHT_OF_WAY
+   Detection T:  -2.10s
+   Min TTC:      0.04s
+----------------------------------------
+
+>> SCENARIO 8
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   800  | TP     | REAR_END             | CUTOFF               | 1.00   | 0.12   | 9.30s 
+   801  | TP     | LANE_CHANGE          | REAR_END             | 1.00   | 0.18   | 2.10s 
+   802  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   803  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.09   | 2.10s 
+   804  | TP     | RIGHT_OF_WAY         | CUTOFF               | 1.00   | 0.12   | 2.80s 
+   805  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   806  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   807  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   808  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   809  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=4 | FP=0 | TN=5 | FN=1 (Total: 10)
+   Metrics:      Acc=0.90 | Prec=1.00 | Rec=0.80 | Brier=0.1000
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 801: REAR_END, Obj 803: RIGHT_OF_WAY, Obj 804: CUTOFF, Obj 800: CUTOFF
+   Detection T:  -2.10s
+   Min TTC:      0.06s
+----------------------------------------
+
+>> SCENARIO 9
+   [Object-by-Object Breakdown]
+   OID  | Status | GT Type              | Pred Type            | Conf   | t-IoU  | Delay 
+   ---- | ------ | -------------------- | -------------------- | ------ | ------ | ------
+   900  | FN     | REAR_END             | NONE                 | 0.00   | 0.00   | -     
+   901  | FN     | LANE_CHANGE          | NONE                 | 0.00   | 0.00   | -     
+   902  | FN     | CUTOFF               | NONE                 | 0.00   | 0.00   | -     
+   903  | TP     | BROADSIDE            | RIGHT_OF_WAY         | 1.00   | 0.09   | 2.00s 
+   904  | TP     | RIGHT_OF_WAY         | REAR_END             | 1.00   | 0.12   | 2.70s 
+   905  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   906  | FP     | NONE                 | BROADSIDE            | 0.90   | 0.00   | -     
+   907  | TN     | NONE                 | NONE                 | 0.07   | 0.00   | -     
+   908  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+   909  | TN     | NONE                 | NONE                 | 0.00   | 0.00   | -     
+
+   [Object Evaluation]
+   Counts:       TP=2 | FP=1 | TN=4 | FN=3 (Total: 10)
+   Metrics:      Acc=0.60 | Prec=0.67 | Rec=0.40 | Brier=0.3814
+
+   [Scenario Evaluation]
+   Status:       Correct (TRUE_POSITIVE)
+   Ground Truth: NEAR MISS
+   Prediction:   NEAR MISS (Confidence: 1.0000)
+   Max Risk:     COLLISION
+   Conflicts:    Obj 903: RIGHT_OF_WAY, Obj 904: RIGHT_OF_WAY, Obj 906: BROADSIDE
+   Detection T:  -2.00s
+   Min TTC:      0.04s
+----------------------------------------
+
+SUMMARY TABLE
+-----------------------------------------------------------------------------------------------
+ID    Result          Actual     Pred       Risk            Min TTC    Max DRAC   Det.Time  
+-----------------------------------------------------------------------------------------------
+0     TP              YES        YES        COLLISION       0.03       240.88     -1.90s    
+1     TP              YES        YES        COLLISION       0.01       10.80      -1.80s    
+2     TP              YES        YES        COLLISION       0.07       47.95      -1.70s    
+3     TP              YES        YES        COLLISION       0.18       10.10      -1.90s    
+4     TP              YES        YES        COLLISION       0.02       181.49     -1.70s    
+5     TP              YES        YES        COLLISION       0.13       11.11      -1.80s    
+6     TP              YES        YES        COLLISION       0.37       11.52      -1.90s    
+7     TP              YES        YES        COLLISION       0.04       7.85       -2.10s    
+8     TP              YES        YES        COLLISION       0.06       280.84     -2.10s    
+9     TP              YES        YES        COLLISION       0.04       10.21      -2.00s    
+
+============================================================
